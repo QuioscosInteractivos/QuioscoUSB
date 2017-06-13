@@ -1,0 +1,56 @@
+<div class="viewTopbar container-fluid">
+		<div class="main row">Planes de estudio</div>
+</div>
+<!-- Buscador y botón -->
+<div class="searcherBar col-sm-12">
+	<input class="caja" type="text" placeholder="Buscar">
+	<button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="Search()">
+	  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+	</button>
+</div>
+<!-- Breadcrumb y subtitulo -->
+<div class="breadCrumbs col-sm-12">
+	<div *ngFor='let obCrumb of arBreadCrumb' (click)="GoTo($index, obCrumb)">{{obCrumb.NAME}}</div>
+</div>
+
+<!-- Menú -->
+<div [ngClass]="cellsClass" class="contentBase" *ngFor='let obFaculty of arMenuFaculties'>
+	<div class="col-sm-3 treeItem" (click)="ShowSons(obFaculty)">
+		{{obFaculty.NAME}}
+	</div>
+</div>
+
+<!-- plan de estudio seleccionado -->
+<div *ngFor='let obCarrer of arPensum'>
+	<!-- Tipos de materias -->
+	<div class="contentBase" *ngFor='let obCourseType of obCarrer.GROUPERS'>
+		<div>
+			<div [ngClass]="getCourseTypeColor(obCourseType.ID)" class="courseTypeLegendSize"></div>
+			<div>{{obCourseType.DESCRIPTION}}</div>
+		</div>
+	</div>
+
+	<!-- Semestres -->
+	<div class="contentBase" *ngFor='let obSemester of obCarrer.SEMESTERS'>
+		<div class="col-sm-3 treeItem">
+			<div>
+				<div>
+					{{obSemester.SEMESTER_NAME}}
+				</div>
+				<div>
+					Créditos: {{getTotalCredits(obSemester)}}
+				</div>
+			</div>
+
+			<!-- Marerias -->
+			<div *ngFor="let obCourse of obSemester.SUBJECTS">
+				<div [ngClass]="getCourseTypeColor(obCourse.ID_GROUPER)" class="courseTypeSize"></div>
+				<div>{{obCourse.NAME}}</div>
+				<div>
+					<div>{{obCourse.CREDITS}}</div>
+					<div>créditos</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

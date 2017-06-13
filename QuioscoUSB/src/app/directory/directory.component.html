@@ -1,0 +1,36 @@
+<div class="viewTopbar container-fluid">
+		<div class="main row">{{sbTitle}}</div>
+</div>
+<!-- Buscador y botón -->
+<div class="searcherBar col-sm-12">
+	<input class="caja" type="text" placeholder="Buscar" [(ngModel)]="sbSearchString">
+	<button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="Search()">
+	  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+	</button>
+</div>
+<!-- Breadcrumb y subtitulo -->
+<div class="breadCrumbs col-sm-12">
+	<div *ngFor='let obCrumb of arBreadCrumb, let nuIndex=index' (click)="GoTo(nuIndex, obCrumb)">{{obCrumb.DESCRIPTION}}</div>
+</div>
+
+<div class="contentBase" *ngFor='let obUnit of arUnits'>
+	<div class="col-sm-3 treeItem" (click)="ShowSons(obUnit)">
+		{{obUnit.DESCRIPTION}}
+	</div>
+</div>
+
+<table border="1" width="100%" ng-show="arDependencies.length > 0">
+	<tr>
+		<th (click)="OrderBy('DESCRIPTION')" class="col-sm-3">Dependencia</th>
+		<th (click)="OrderBy('PHONE')" class="col-sm-3">Teléfono</th>
+		<th (click)="OrderBy('EMAIL')" class="col-sm-3">Correo electrónico</th>
+	</tr>
+	
+  <!-- Filters are deprecated, now the filtering must be done manually -->
+    <!--  | orderBy:sbOrderProperty:blReverseOrder -->
+	<tr *ngFor="let obDependency of arDependencies">
+		<td class="col-sm-3">{{obDependency.DESCRIPTION}}</td>
+		<td class="col-sm-3">{{obDependency.PHONE}}</td>
+		<td class="col-sm-3">{{obDependency.EMAIL}}</td>
+	</tr>
+</table>
