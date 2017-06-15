@@ -19,7 +19,7 @@
 	</div>
 </div>
 
-<table border="1" width="100%" ng-show="arDependencies.length > 0">
+<table border="1" width="100%" *ngIf="arDependencies.length > 0">
 	<tr>
 		<th (click)="OrderBy('DESCRIPTION')" class="col-sm-3">Dependencia</th>
 		<th (click)="OrderBy('PHONE')" class="col-sm-3">Teléfono</th>

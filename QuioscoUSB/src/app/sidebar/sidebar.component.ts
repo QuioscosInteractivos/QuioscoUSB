@@ -16,7 +16,6 @@ export class SidebarComponent implements OnInit {
   constructor() { }
 
   emitChange(component: String){
-    console.log("emitiendo "+component);
     this.changeContent.emit(component);
   }
 

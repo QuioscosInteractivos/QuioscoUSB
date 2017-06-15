@@ -15,6 +15,7 @@ import { FindCourseService } from "app/services/find-course.service";
 import { DirectoryService } from "app/services/directory.service";
 import { PlanesDeEstudioService } from "app/services/planes-de-estudio.service";
 import { Utilities } from "app/utilities";
+import { ServicesUtilities } from "app/services/services-utilities";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { Utilities } from "app/utilities";
     FormsModule,
     HttpModule
   ],
-  providers: [FindCourseService,DirectoryService,PlanesDeEstudioService,Utilities],
+  providers: [FindCourseService,DirectoryService,PlanesDeEstudioService,Utilities,ServicesUtilities],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

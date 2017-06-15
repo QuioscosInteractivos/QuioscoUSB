@@ -1,2 +1,3 @@
-<app-sidebar [content]="content" (changeContent)="getContent($event)" ></app-sidebar>
-<app-view-content [content]="content"></app-view-content>
+<app-news [content]="content" (changeContent)="getContent($event)" *ngIf="content=='News'"></app-news>
+<app-sidebar [content]="content" (changeContent)="getContent($event)" *ngIf="content!='News'"></app-sidebar>
+<app-view-content [content]="content" *ngIf="content!='News'"></app-view-content>

@@ -12,17 +12,19 @@ export class PlanesDeEstudioComponent implements OnInit {
   constructor(private PlanesDeEstudioService: PlanesDeEstudioService, private Utilities: Utilities) { }
 
   // Inicializando
-		// Elementos de la miga de pan
-		arBreadCrumb = [];
-		// Elementos a mostrar en el menú
-		arMenuFaculties = [];
-		// Todos los elementos consultados
-		arAllfaculties = [];
-		// Pensum de una carrera seleccionada
-		arPensum = [];
-		// Colores de las clases
-		arCourseTypeClasses = ['blue', 'yellow', 'green', 'red'];
-		obCourseClasses = {};
+  // Título de la vista
+    sbTitle: any = 'Planes de estudio';
+	// Elementos de la miga de pan
+	arBreadCrumb = [];
+	// Elementos a mostrar en el menú
+	arMenuFaculties = [];
+	// Todos los elementos consultados
+	arAllfaculties = [];
+	// Pensum de una carrera seleccionada
+	arPensum = [];
+	// Colores de las clases
+	arCourseTypeClasses = ['blue', 'yellow', 'green', 'red'];
+	obCourseClasses = {};
 
   ngOnInit() {
     // Primer crumb
@@ -35,6 +37,7 @@ export class PlanesDeEstudioComponent implements OnInit {
 		// Se llama al método del servicio, recibe como entrada lo mismo con lo que resolvió la promesa
 		this.PlanesDeEstudioService.getFaculties().then(
       iarData=>{
+		  console.log(iarData);
         this.arAllfaculties = iarData;
         this.arMenuFaculties = iarData;
       }
@@ -68,20 +71,20 @@ export class PlanesDeEstudioComponent implements OnInit {
 					}
 
 					this.PlanesDeEstudioService.getCarrers(nuId).then(
-            iobData=>{
-              nuLastCrumb = (me.arBreadCrumb.length - 1);
-              me.arBreadCrumb[nuLastCrumb].SONS = iobData;
-              // Cambiando las opciones a desplegar
-              this.Utilities.ReplaceArrayItems(me.arMenuFaculties, iobData);
-            }
-          ).catch(iobError=>console.log(iobError));
+						iobData=>{
+						nuLastCrumb = (me.arBreadCrumb.length - 1);
+						me.arBreadCrumb[nuLastCrumb].SONS = iobData;
+						// Cambiando las opciones a desplegar
+						this.Utilities.ReplaceArrayItems(me.arMenuFaculties, iobData);
+						}
+					).catch(iobError=>console.log(iobError));
 
-				} else {
-					// Cambia las opciones a desplegar
-					this.Utilities.ReplaceArrayItems(me.arMenuFaculties, iobfaculty.SONS);
-				}
+			} else {
+				// Cambia las opciones a desplegar
+				this.Utilities.ReplaceArrayItems(me.arMenuFaculties, iobfaculty.SONS);
 			}
 		}
+	}
 
 		// inuIndex es el número de la iteración por la que va un elemento,
 		//		no el indice real en el arreglo en el que esta (en otras palabras

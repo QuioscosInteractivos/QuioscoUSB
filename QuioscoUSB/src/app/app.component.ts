@@ -9,7 +9,6 @@ export class AppComponent {
   content: string = "news";
 
   getContent(content){
-    console.log("getting "+content);
     this.content = content;
   }
 
