@@ -145,9 +145,50 @@ class Index_controller extends BServiceController {
             $Unidades = Facultades::getById($id);
             print json_encode($Unidades->toArray());
         }else{*/
-            $Unidades = Facultades::getAll();
+           // $Unidades = Facultades::getAll();
             //print json_encode($Unidades);
-            print $Unidades;
+            print '[
+    {
+        "ID":1,
+        "NAME":"Arquitectura, Arte y Diseño",
+		"SONS":[{"NAME":"Pregrados", "ID":"11"},{"NAME":"Maestrias", "ID":"12"}]
+		
+    },{
+        "ID":2,
+        "NAME":"Ciencias Económicas",
+		"SONS":[{"NAME":"Pregrados", "ID":"21"},{"NAME":"Especializaciones", "ID":"22"},{"NAME":"Maestrias", "ID":"23"}]
+    },{
+        "ID":3,
+        "NAME":"Derecho y Ciencias Políticas",
+		"SONS":[{"NAME":"Pregrados", "ID":"31"},{"NAME":"Especializaciones", "ID":"32"},{"NAME":"Maestrias", "ID":"33"}]
+    },{
+        "ID":4,
+        "NAME":"Educación",
+		"SONS":[
+			{"NAME":"Pregrados", "ID":"41"},
+			{"NAME":"Especializaciones", "ID":"42"},
+			{"NAME":"Maestrias", "ID":"43"},
+			{"NAME":"Doctorados", "ID":"44"}
+		]
+    },{
+        "ID":5,
+        "NAME":"Ingeniería",
+		"SONS":[
+			{"NAME":"Pregrados", "ID":"51"},
+			{"NAME":"Especializaciones", "ID":"52"},
+			{"NAME":"Maestrias", "ID":"53"}
+		]
+    },{
+        "ID":6,
+        "NAME":"Psicología",
+		"SONS":[
+			{"NAME":"Pregrados", "ID":"61"},
+			{"NAME":"Especializaciones", "ID":"62"},
+			{"NAME":"Maestrias", "ID":"63"},
+			{"NAME":"Doctorados", "ID":"64"}
+			]
+    }
+]';
         //}
 
         /*print '[{
