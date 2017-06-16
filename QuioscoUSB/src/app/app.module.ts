@@ -16,6 +16,7 @@ import { DirectoryService } from "app/services/directory.service";
 import { PlanesDeEstudioService } from "app/services/planes-de-estudio.service";
 import { Utilities } from "app/utilities";
 import { ServicesUtilities } from "app/services/services-utilities";
+import { TitlebarComponent } from './titlebar/titlebar.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ServicesUtilities } from "app/services/services-utilities";
     PlanesDeEstudioComponent,
     DirectoryComponent,
     MapComponent,
-    CourseFinderComponent
+    CourseFinderComponent,
+    TitlebarComponent
   ],
   imports: [
     BrowserModule,
