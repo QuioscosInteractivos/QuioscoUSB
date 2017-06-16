@@ -13,7 +13,7 @@
 	<div *ngFor='let obCrumb of arBreadCrumb, let nuIndex=index' (click)="GoTo(nuIndex, obCrumb)">{{obCrumb.DESCRIPTION}}</div>
 </div>
 <!-- Contenedor padre e hijos -->
-<div class="q-principal-content">
+<div class="q-principal-content" *ngIf="arDependencies.length == 0">
 	<div class="col-sm-3 contentBase" *ngFor='let obUnit of arUnits'>
 		<div class="col-sm-3 treeItem" (click)="ShowSons(obUnit)">
 			{{obUnit.DESCRIPTION}}
@@ -21,7 +21,7 @@
 	</div>
 </div>
 
-<table class="q-directory-table" border="1" width="100%" ng-show="arDependencies.length > 0">
+<table class="q-directory-table" border="1" width="100%" *ngIf="arDependencies.length > 0">
 	<tr>
 		<th (click)="OrderBy('DESCRIPTION')" class="q-dependency col-sm-3">Dependencia</th>
 		<th (click)="OrderBy('PHONE')" class="q-phone col-sm-3">Teléfono</th>

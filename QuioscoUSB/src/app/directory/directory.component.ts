@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DirectoryService } from "app/services/directory.service";
+import { Utilities } from "app/utilities";
 
 @Component({
   selector: 'app-directory',
@@ -8,7 +9,7 @@ import { DirectoryService } from "app/services/directory.service";
 })
 export class DirectoryComponent implements OnInit {
 
-  constructor(private DirectoryService: DirectoryService) { }
+  constructor(private DirectoryService: DirectoryService, private Utilities: Utilities) { }
 
 		// Título de la vista
     sbTitle: any = 'Directorio institucional';
@@ -32,27 +33,36 @@ export class DirectoryComponent implements OnInit {
     // Se llama al método del servicio, recibe como entrada lo mismo con lo que resolvió la promesa
     this.DirectoryService.getUnits().then(
       iarData => {
-        this.arUnits = iarData;
-        this.arAllUnits = iarData;
+        this.Utilities.ReplaceArrayItems(this.arUnits, iarData);
+        this.Utilities.ReplaceArrayItems(this.arAllUnits, iarData);
           // Primer crumb
-          this.ShowSons({
-            ID: null,
-            DESCRIPTION: 'Edificios',
-            SONS: iarData
-          });
+          this.ShowSons(this.getBaseCrumb());
         }
       ).catch(
         sbError => {console.log(sbError)}
       );
   }
 
-		
+	getBaseCrumb() {
+		return {
+            ID: null,
+            DESCRIPTION: 'Edificios',
+            SONS: this.arAllUnits
+          };
+	}	
 		
 		// Muestra las opciones hijas de una selección en el menú.
 		ShowSons(iobUnit){
       let me = this,
 			    nuId = iobUnit.ID,
 				  nuLastCrumb = 0;
+
+			if(iobUnit.ID === 'CANCEL_SEARCH'){
+				me.Utilities.ReplaceArrayItems(me.arBreadCrumb, null);
+				iobUnit = me.getBaseCrumb();
+				// Limpiando el buscador
+				this.sbSearchString = '';
+			}
 
 			// Guardando el registro anterior en la miga de pan.
 			me.arBreadCrumb.push(iobUnit);
@@ -61,13 +71,13 @@ export class DirectoryComponent implements OnInit {
 
 			if(iobUnit.DEPENDENCIES){
 				// Cuando se llega a las dependencias de una unidad
-				me.arDependencies = iobUnit.DEPENDENCIES;
+				me.Utilities.ReplaceArrayItems(me.arDependencies, iobUnit.DEPENDENCIES);
 				// Se limpian las opciones del menú
-				me.arUnits.length=0;
+				me.Utilities.ReplaceArrayItems(me.arUnits, null);
 
 			} else {
 				// Limpiando la vista de pensum
-				me.arDependencies.length=0;
+				me.Utilities.ReplaceArrayItems(me.arDependencies, null);
 
 				if (!iobUnit.SONS || (iobUnit.SONS.length === 0)) {
 					// Cuando no hay mas hijos en el menú
@@ -81,9 +91,9 @@ export class DirectoryComponent implements OnInit {
           me.DirectoryService.getDependencies(nuId).then(
             iarData => {
               // Agrega las dependencias de la unidad seleccionada
-              me.arDependencies = iarData;
+              me.Utilities.ReplaceArrayItems(me.arDependencies, iarData);
               // Se limpian las opciones del menú
-              me.arUnits.length=0;
+              me.Utilities.ReplaceArrayItems(me.arUnits, null);
                 
                 nuLastCrumb = (me.arBreadCrumb.length - 1);
 						    me.arBreadCrumb[nuLastCrumb].DEPENDENCIES = iarData;
@@ -93,7 +103,7 @@ export class DirectoryComponent implements OnInit {
             );
 				} else {
 					// Cambia las opciones a desplegar
-					me.arUnits = iobUnit.SONS;
+					me.Utilities.ReplaceArrayItems(me.arUnits, iobUnit.SONS);
 				}
 			}
 
@@ -116,7 +126,6 @@ export class DirectoryComponent implements OnInit {
 
 		// Define las variables usadas para ordenar la tabla que contiene la información de dependencias.
 		OrderBy(isbProperty, iblReverse){
-      // *** Tiene que re hacerse!!!! ***
 			let me = this;
 
 			if (typeof(iblReverse) === 'boolean') {
@@ -135,6 +144,22 @@ export class DirectoryComponent implements OnInit {
 					me.blReverseOrder = false;
 				}
 			}
+
+			me.arDependencies.sort(me.DataSorter.bind(me));
+		}
+
+		// Función pasada a un arreglo de datos para que lo organice.
+		// Toma las configuraciones para el filtrado de esta clase.
+		DataSorter(iobData01, iobData02) {
+			let me = this,
+					// Modificador usado para ordenar en un sentido o en otro.
+					nuReverseModifier = me.blReverseOrder ? -1 : 1;
+
+			if (iobData01[me.sbOrderProperty] < iobData02[me.sbOrderProperty])
+				return -nuReverseModifier;
+			if (iobData01[me.sbOrderProperty] > iobData02[me.sbOrderProperty])
+				return nuReverseModifier;
+			return 0;
 		}
 
     Search(){
@@ -142,13 +167,16 @@ export class DirectoryComponent implements OnInit {
 
       this.DirectoryService.getDependenciesSearch(this.sbSearchString).then(
         iobData => {
-          // limpiando los breadcrumbs
-          this.arBreadCrumb.length = 0;
+          // Dejando solo un crumb para cancelar la búsqueda
+          this.Utilities.ReplaceArrayItems(this.arBreadCrumb, [{
+            ID: 'CANCEL_SEARCH',
+            DESCRIPTION: '   X   '
+          }]);
 
           // Definiendo el nuevo inicio
           this.ShowSons({
-            ID: null,
-            DESCRIPTION: 'Resultados para "' + this.sbSearchString + '"' + 'Da errores al hacer click sobre uno!!!!',
+            ID: 'SEARCH_RESULT',
+            DESCRIPTION: 'Resultados para "' + this.sbSearchString + '"',
             SONS: iobData
           });
         }
