@@ -1,5 +1,5 @@
 <div class="viewTopbar container-fluid">
-		<div class="main row">{{sbTitle}}</div>
+		<div class="main row">Directorio</div>
 </div>
 <!-- Buscador y botón -->
 <div class="searcherBar col-sm-12">
@@ -12,25 +12,27 @@
 <div class="breadCrumbs col-sm-12">
 	<div *ngFor='let obCrumb of arBreadCrumb, let nuIndex=index' (click)="GoTo(nuIndex, obCrumb)">{{obCrumb.DESCRIPTION}}</div>
 </div>
-
-<div class="contentBase" *ngFor='let obUnit of arUnits'>
-	<div class="col-sm-3 treeItem" (click)="ShowSons(obUnit)">
-		{{obUnit.DESCRIPTION}}
+<!-- Contenedor padre e hijos -->
+<div class="q-principal-content">
+	<div class="col-sm-3 contentBase" *ngFor='let obUnit of arUnits'>
+		<div class="col-sm-3 treeItem" (click)="ShowSons(obUnit)">
+			{{obUnit.DESCRIPTION}}
+		</div>
 	</div>
 </div>
 
-<table border="1" width="100%" *ngIf="arDependencies.length > 0">
+<table class="q-directory-table" border="1" width="100%" ng-show="arDependencies.length > 0">
 	<tr>
-		<th (click)="OrderBy('DESCRIPTION')" class="col-sm-3">Dependencia</th>
-		<th (click)="OrderBy('PHONE')" class="col-sm-3">Teléfono</th>
-		<th (click)="OrderBy('EMAIL')" class="col-sm-3">Correo electrónico</th>
+		<th (click)="OrderBy('DESCRIPTION')" class="q-dependency col-sm-3">Dependencia</th>
+		<th (click)="OrderBy('PHONE')" class="q-phone col-sm-3">Teléfono</th>
+		<th (click)="OrderBy('EMAIL')" class="q-email col-sm-3">Correo electrónico</th>
 	</tr>
 	
   <!-- Filters are deprecated, now the filtering must be done manually -->
     <!--  | orderBy:sbOrderProperty:blReverseOrder -->
 	<tr *ngFor="let obDependency of arDependencies">
-		<td class="col-sm-3">{{obDependency.DESCRIPTION}}</td>
-		<td class="col-sm-3">{{obDependency.PHONE}}</td>
-		<td class="col-sm-3">{{obDependency.EMAIL}}</td>
+		<td class="q-directory-result col-sm-3">{{obDependency.DESCRIPTION}}</td>
+		<td class="q-directory-result col-sm-3">{{obDependency.PHONE}}</td>
+		<td class="q-directory-result col-sm-3">{{obDependency.EMAIL}}</td>
 	</tr>
 </table>

@@ -12,8 +12,8 @@
 	<button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="SearchCourse()">
 	  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 	</button>
-	<div>Consulte una materia por su nombre o docente.</div>
 </div>
+<div class="q-search-hint">Consulte una materia por su nombre o docente.</div>
 <!-- Breadcrumb y subtitulo -->
 <div class="breadCrumbs col-sm-12">
 	<div *ngFor='let obCrumb of arBreadCrumb, let nuIndex=index' (click)="GoTo(nuIndex, obCrumb)">{{obCrumb.DESCRIPTION}} >></div>

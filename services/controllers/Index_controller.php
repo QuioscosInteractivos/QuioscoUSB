@@ -75,25 +75,56 @@ class Index_controller extends BServiceController {
 
     // --- DIRECTORY ---
 
-     public function getUnits($id=false){
-        /*if($id){
-            $Unidades = Unidades::getById($id);
-            print json_encode($Unidades->toArray());
+       public function getUnits($id=false){
+        if($id){
+           // $Unidades = Unidades::getById($id);
+           // print json_encode($Unidades->toArray());
+            print "dddffd";
         }else{
-            $Unidades = Unidades::getAll();
-            print json_encode($Unidades);
-        }*/
-
-		print 'hgujgj';
+            //$Unidades = Unidades::getAll();
+            //print json_encode($Unidades);
+            print '[{"ID":1,"DESCRIPTION":"Rectoría"},{"ID":2,"DESCRIPTION":"Secretaría"},
+{"ID":3,"DESCRIPTION":"Vicerrectorías"},{"ID":4,"DESCRIPTION":"Facultades"},{"ID":5,"DESCRIPTION":"Unidades de Rectoría y Secretaría"},
+{"ID":6,"DESCRIPTION":"Unidades Académicas"},{"ID":7,"DESCRIPTION":"Unidades Administrativas"},
+{"ID":8,"DESCRIPTION":"Otras dependencias"}]';
+        }
     }
 
-    public function getDependencies($inuId){
-        $auditorio = Directorio::where("UNIT_ID", $inuId);
+   public function getDependencies($inuId){
+       // $auditorio = Directorio::where("UNIT_ID", $inuId);
+      // $auditorio = $inuId;
         if (!empty($auditorio) || is_array($auditorio)) {
             print json_encode($auditorio);
 
         } else {
-            print json_encode($auditorio->toArray());
+           // print json_encode($auditorio->toArray());
+           print '[
+    {
+        "ID":7,
+        "UNIT_ID":7,
+        "DESCRIPTION":"Departamento de Talento Humano",
+        "EMAIL":"talentohumano@usbcali.edu.co",
+        "PHONE":"488 22 22 ext 256"
+    },{
+        "ID":8,
+        "UNIT_ID":7,
+        "DESCRIPTION":"Departamento de Contabilidad",
+        "EMAIL":"",
+        "PHONE":"488 22 22 ext 260, 259, 261"
+    },{
+        "ID":9,
+        "UNIT_ID":7,
+        "DESCRIPTION":"Editorial Bonaventuriana",
+        "EMAIL":"editorialbonaventuriana@usbcali.edu.co",
+        "PHONE":"4882222 ext 274"
+    },{
+        "ID":10,
+        "UNIT_ID":7,
+        "DESCRIPTION":"Parque Tecnológico",
+        "EMAIL":"parquetecnologico@usbcali.edu.co",
+        "PHONE":"4882222 ext 290, 385"
+    }
+]';
         }
     }
 
@@ -136,7 +167,7 @@ class Index_controller extends BServiceController {
             print json_encode($auditorio->toArray());
         }*/
 
-        print json_encode('[{
+        print '[{
 	"NAME":"Ingeniería Multimedia",
 	"GROUPERS":[{"DESCRIPTION":"Ciencias básicas", "ID":1},{"DESCRIPTION":"Ciencias básicas en ingeniería", "ID":2},{"DESCRIPTION":"Ingeniería aplicada", "ID":3},{"DESCRIPTION":"Complementaria", "ID":4}],
 	"SEMESTERS":[
@@ -557,7 +588,7 @@ class Index_controller extends BServiceController {
 			]
 		}
 	]
-}]'->toArray());
+}]';
     }
 
     public function getCarrersSearch($isbSearchString){
