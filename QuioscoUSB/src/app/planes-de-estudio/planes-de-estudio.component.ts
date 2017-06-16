@@ -14,6 +14,8 @@ export class PlanesDeEstudioComponent implements OnInit {
   // Inicializando
   // Título de la vista
     sbTitle: any = 'Planes de estudio';
+	// Parámetro de búsqueda
+    sbSearchString: String = '';
 	// Elementos de la miga de pan
 	arBreadCrumb = [];
 	// Elementos a mostrar en el menú
@@ -26,8 +28,8 @@ export class PlanesDeEstudioComponent implements OnInit {
 	arCourseTypeClasses = ['blue', 'yellow', 'green', 'red'];
 	obCourseClasses = {};
 
-  ngOnInit() {
-    // Primer crumb
+	ngOnInit() {
+		// Primer crumb
 		this.arBreadCrumb.push({
 			ID: null,
 			NAME: 'Facultades',
@@ -36,48 +38,55 @@ export class PlanesDeEstudioComponent implements OnInit {
 
 		// Se llama al método del servicio, recibe como entrada lo mismo con lo que resolvió la promesa
 		this.PlanesDeEstudioService.getFaculties().then(
-      iarData=>{
-		  console.log(iarData);
-        this.arAllfaculties = iarData;
-        this.arMenuFaculties = iarData;
-      }
-    ).catch(iobError => console.log(iobError));
-  }
+			iarData=>{
+				this.Utilities.ReplaceArrayItems(this.arAllfaculties, iarData);
+				this.Utilities.ReplaceArrayItems(this.arMenuFaculties, iarData);
+			}
+		).catch(iobError => console.log(iobError));
+	}
 		
-		ShowSons = function(iobfaculty){
-			let me = this,
-				  nuLastCrumb = 0;
+	ShowSons = function(iobfaculty){
+		let me = this,
+				nuLastCrumb = 0;
 
-			if(iobfaculty.SEMESTERS){
-				me.arBreadCrumb.push(iobfaculty);
-				// Cuando se llega al pensum de una carrera
-				this.Utilities.ReplaceArrayItems(me.arPensum = [iobfaculty]);
-				// Se limpian las opciones del menú
-				this.Utilities.ReplaceArrayItems(me.arMenuFaculties);
+		if(iobfaculty.ID === 'CANCEL_SEARCH'){
+			me.Utilities.ReplaceArrayItems(me.arBreadCrumb, null);
+			iobfaculty = me.getBaseCrumb();
+			// Limpiando el buscador
+			this.sbSearchString = '';
+		}
 
-			} else {
-				// Guardando el registro anterior en la miga de pan.
-				me.arBreadCrumb.push(iobfaculty);
-				// Limpiando la vista de pensum
-				this.Utilities.ReplaceArrayItems(me.arPensum);
+		if(iobfaculty.SEMESTERS){
+			me.arBreadCrumb.push(iobfaculty);
+			// Cuando se llega al pensum de una carrera
+			this.Utilities.ReplaceArrayItems(me.arPensum, [iobfaculty]);
+			// Se limpian las opciones del menú
+			this.Utilities.ReplaceArrayItems(me.arMenuFaculties);
 
-				if (!iobfaculty.SONS || (iobfaculty.SONS.length === 0)) {
-					// Cuando no hay mas hijos en el menú
-					let nuId = Number(iobfaculty.ID);
+		} else {
+			// Guardando el registro anterior en la miga de pan.
+			me.arBreadCrumb.push(iobfaculty);
+			// Limpiando la vista de pensum
+			this.Utilities.ReplaceArrayItems(me.arPensum);
 
-					if (isNaN(nuId)) {
-						console.log('No es un ID válido');
-						return;
+			if (!iobfaculty.SONS || (iobfaculty.SONS.length === 0)) {
+				// Cuando no hay mas hijos en el menú
+				let nuId = Number(iobfaculty.ID);
+
+				if (isNaN(nuId)) {
+					console.log('No es un ID válido');
+					return;
+				}
+
+				this.PlanesDeEstudioService.getCarrers(nuId).then(
+					iobData=>{
+					nuLastCrumb = (me.arBreadCrumb.length - 1);
+					me.arBreadCrumb[nuLastCrumb].SONS = iobData;
+
+					// Cambiando las opciones a desplegar
+					this.Utilities.ReplaceArrayItems(me.arMenuFaculties, iobData);
 					}
-
-					this.PlanesDeEstudioService.getCarrers(nuId).then(
-						iobData=>{
-						nuLastCrumb = (me.arBreadCrumb.length - 1);
-						me.arBreadCrumb[nuLastCrumb].SONS = iobData;
-						// Cambiando las opciones a desplegar
-						this.Utilities.ReplaceArrayItems(me.arMenuFaculties, iobData);
-						}
-					).catch(iobError=>console.log(iobError));
+				).catch(iobError=>console.log(iobError));
 
 			} else {
 				// Cambia las opciones a desplegar
@@ -123,4 +132,25 @@ export class PlanesDeEstudioComponent implements OnInit {
 
 			return nuTotal;
 		}
+
+		Search(){
+      console.log(this.sbSearchString);
+
+      this.PlanesDeEstudioService.getCarrersSearch(this.sbSearchString).then(
+        iobData => {
+          // Dejando solo un crumb para cancelar la búsqueda
+          this.Utilities.ReplaceArrayItems(this.arBreadCrumb, [{
+            ID: 'CANCEL_SEARCH',
+            DESCRIPTION: '   X   '
+          }]);
+
+          // Definiendo el nuevo inicio
+          this.ShowSons({
+            ID: 'SEARCH_RESULT',
+            DESCRIPTION: 'Resultados para "' + this.sbSearchString + '"',
+            SONS: iobData
+          });
+        }
+      ).catch(iobError => console.log(iobError))
+    }
 }

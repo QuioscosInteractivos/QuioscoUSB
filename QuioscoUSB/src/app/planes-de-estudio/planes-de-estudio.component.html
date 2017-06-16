@@ -10,7 +10,7 @@
 </div>
 <!-- Breadcrumb y subtitulo -->
 <div class="breadCrumbs col-sm-12">
-	<div *ngFor='let obCrumb of arBreadCrumb' (click)="GoTo($index, obCrumb)">{{obCrumb.NAME}}</div>
+	<div *ngFor='let obCrumb of arBreadCrumb, let nuIndex=index' (click)="GoTo(nuIndex, obCrumb)">{{obCrumb.NAME}}</div>
 </div>
 
 <!-- Menú -->

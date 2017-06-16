@@ -99,6 +99,7 @@ class ServiceController{
                 $args = [];
                 $response = Request::response($msg, $args, 1);
                 Penelope::printJSON($response);
+                //print_r($response);
                 exit();
             }
         }

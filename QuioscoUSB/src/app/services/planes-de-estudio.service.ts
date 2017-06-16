@@ -18,4 +18,10 @@ export class PlanesDeEstudioService {
 
     return this.ServicesUtilities.SendRequest(sbUrl);
   }
+
+  getCarrersSearch(inuId){
+    let sbUrl = "Index/carrersSearch?inuId="+inuId;
+
+    return this.ServicesUtilities.SendRequest(sbUrl);
+  }
 }

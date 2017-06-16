@@ -31,17 +31,23 @@ app-sidebar li{
 /*****************************************SIDEBAR*****************************/
 /*********************************TOPBAR**********************************/
 .viewTopbar{
-    text-align: center;
     background-color: #F26101;
     padding: 1rem;
     margin-bottom: 2rem;
     color: white;
     font-weight: bold;
     display: flex;
-    padding-left: 20rem;
 }
-.viewTopbar div{    
-    width:80%;
+.titleDiv{    
+    margin: auto;
+}
+
+.clockFrame{
+    width: 240px;
+    height: 25px;
+    position: absolute;
+    right: 0;
+    /*top: 0;*/
 }
 
 /***************************************/
