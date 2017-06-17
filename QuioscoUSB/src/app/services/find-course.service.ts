@@ -26,6 +26,12 @@ export class FindCourseService {
     return this.ServicesUtilities.SendRequest(sbUrl);
   }
 
+  getCoursesSearch(isbSearhString){
+    let sbUrl = "Index/coursesSearch?isbSearhString="+isbSearhString;
+
+    return this.ServicesUtilities.SendRequest(sbUrl);
+  }
+
    getBy(isbField, iobValue){
     let sbUrl = "Index/auditorios/"+iobValue;
 

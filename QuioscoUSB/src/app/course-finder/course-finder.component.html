@@ -9,7 +9,7 @@
 
 <div class="searcherBar col-sm-12">
 	<input class="caja" type="text" placeholder="Buscar" [(ngModel)]="sbSearchString">
-	<button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="SearchCourse()">
+	<button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="Search()">
 	  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 	</button>
 </div>
@@ -19,17 +19,55 @@
 	<div *ngFor='let obCrumb of arBreadCrumb, let nuIndex=index' (click)="GoTo(nuIndex, obCrumb)">{{obCrumb.DESCRIPTION}} >></div>
 </div>
 
-<div *ngFor='let obOption of arMenuOptions.SONS'>
+<!-- Menú -->
+<div *ngFor='let obOption of arMenuOptions'>
 	<div class="col-sm-3 treeItem" (click)="ShowSons(obOption)">
 		{{obOption.DESCRIPTION}}
 	</div>
 </div>
-<div *ngFor='let obOption of arMenuOptions.SCHEDULE'>
-	<div class="col-sm-3">
-		<div>{{obOption.DESCRIPTION}}</div>
-            <div>Horario . . . </div>
+
+<!-- Horario de auditorios -->
+<div class="contentBase" *ngFor='let obClassRoom of arBuildingSchedule'>
+	<div class="col-sm-3 q-semester treeItem">
+		<div data-toggle="collapse" data-target=".courses">
+			<div>
+				{{obClassRoom.DESCRIPTION}}
+			</div>
+		</div>
+
+		<!-- Materias -->
+		<div class="collapse" class="courses">
+			<div *ngFor="let obClass of obClassRoom.SCHEDULES">
+				<div class="courseTypeSize"></div>
+				<div>{{obClass.DESCRIPTION}}</div>
+				<div>{{obClass.STARTS_AT}} - {{obClass.ENDS_AT}}</div>
+				<div>{{obClass.TEACHER}}</div>
+			</div>
+		</div>
 	</div>
 </div>
+
+<!-- Horario de una materia -->
+<div class="contentBase" *ngFor='let obDay of arCourseSchedule'>
+	<div class="col-sm-3 q-semester treeItem">
+		<div data-toggle="collapse" data-target=".courses">
+			<div>
+				{{obDay.DAY}}
+			</div>
+		</div>
+
+		<!-- Materias -->
+	<div class="collapse" class="courses">
+			<div *ngFor="let obSchedule of obDay.SCHEDULES">
+				<div class="courseTypeSize"></div>
+					<div>{{obSchedule.STARTS_AT}} - {{obSchedule.ENDS_AT}}</div>
+					<div>{{obSchedule.BUILDING}}</div>
+					<div>{{obSchedule.CLASSROOM}}</div>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div *ngIf="blScheduleView">
 	{{buildingSchedule}}
 </div>

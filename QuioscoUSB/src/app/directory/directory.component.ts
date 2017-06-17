@@ -46,7 +46,7 @@ export class DirectoryComponent implements OnInit {
 	getBaseCrumb() {
 		return {
             ID: null,
-            DESCRIPTION: 'Edificios',
+            DESCRIPTION: 'Unidades',
             SONS: this.arAllUnits
           };
 	}	

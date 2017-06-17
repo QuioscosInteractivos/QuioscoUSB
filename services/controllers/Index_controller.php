@@ -40,14 +40,56 @@ class Index_controller extends BServiceController {
     }
 
     public function getAuditoriums($inuId){
-        $auditorio = Auditorios::where("ID_AUDIENCE", $inuId);
+        /*$auditorio = Auditorios::where("ID_AUDIENCE", $inuId);
         //$auditorio = Auditorios::getID_AUDIENCE($inuId);
         if (!empty($auditorio) || is_array($auditorio)) {
             print json_encode($auditorio);
 
         } else {
             print json_encode($auditorio->toArray());
-        }
+        }*/
+
+		print '[{
+	"ID": 5,
+	"DESCRIPTION": "Sala 1",
+	"ID_AUDIENCE": 4,
+	"SCHEDULES": [{
+		"ID": 6553,
+		"DESCRIPTION": "Física I",
+		"TEACHER": "Walter Magaña",
+		"STARTS_AT": "7:00 AM",
+		"ENDS_AT": "10:00 AM"
+	}, {
+		"ID": 856,
+		"DESCRIPTION": "Física II",
+		"TEACHER": "Walter Magaña",
+		"STARTS_AT": "11:00 AM",
+		"ENDS_AT": "1:00 PM"
+	}, {
+		"ID": 741,
+		"DESCRIPTION": "Circuitos I",
+		"TEACHER": "Ivan Lasso",
+		"STARTS_AT": "1:00 PM",
+		"ENDS_AT": "5:00 PM"
+	}, {
+		"ID": 958,
+		"DESCRIPTION": "Web I",
+		"TEACHER": "Pablo Bejarano",
+		"STARTS_AT": "5:00 PM",
+		"ENDS_AT": "10:00 PM"
+	}]
+}, {
+	"ID": 86,
+	"DESCRIPTION": "Sala 2",
+	"ID_AUDIENCE": 4,
+	"SCHEDULES": [{
+		"ID": 45,
+		"DESCRIPTION": "Gestión de proyectos",
+		"TEACHER": "Andrés Calderón",
+		"STARTS_AT": "7:00 AM",
+		"ENDS_AT": "10:00 AM"
+	}]
+}]';
     }
 
     // Trae todos los edificios
@@ -1450,6 +1492,106 @@ class Index_controller extends BServiceController {
                     "CREDITS": 2
                 }]
             }]
+}]';
+    }
+
+	public function getCoursesSearch($isbSearchString){
+        /*$buildings = Directorio::searchFor("DESCRIPTION", $isbSearchString);
+        if (!empty($buildings) || is_array($buildings)) {
+            print json_encode($buildings);
+            
+        } else {
+            print json_encode($buildings->toArray());
+        }*/
+
+		print '[{
+	"ID": 5,
+	"DESCRIPTION": "Física II",
+	"TEACHER": "Walter Magaña",
+	"SCHEDULES": [{
+		"DAY": "Lunes",
+		"SCHEDULES": []
+		}, {
+			"DAY": "Martes",
+			"SCHEDULES": [{
+				"ID": 741,
+				"BUILDING": "Farallones",
+				"CLASSROOM": "Sala 3",
+				"STARTS_AT": "10:00 AM",
+				"ENDS_AT": "12:00 PM"
+			}]
+		}, {
+			"DAY": "Miercoles",
+			"SCHEDULES": [{
+				"ID": 958,
+				"BUILDING": "Farallones",
+				"CLASSROOM": "Sala 4",
+				"STARTS_AT": "5:00 PM",
+				"ENDS_AT": "10:00 PM"
+			}]
+		}, {
+			"DAY": "Jueves",
+			"SCHEDULES": []
+		}, {
+			"DAY": "Viernes",
+			"SCHEDULES": [{
+				"ID": 45,
+				"BUILDING": "Farallones",
+				"CLASSROOM": "Sala 4",
+				"STARTS_AT": "7:00 AM",
+				"ENDS_AT": "10:00 AM"
+			}]
+		}, {
+			"DAY": "Sabado",
+			"SCHEDULES": []
+		}]
+}, {
+	"ID": 78,
+	"DESCRIPTION": "Métodos numéricos",
+	"TEACHER": "Walter Magaña",
+	"SCHEDULES": [{
+		"DAY": "Lunes",
+		"SCHEDULES": [{
+				"ID": 6553,
+				"BUILDING": "Farallones",
+				"CLASSROOM": "Sala 4",
+				"STARTS_AT": "7:00 AM",
+				"ENDS_AT": "10:00 AM"
+			}, {
+				"ID": 856,
+				"BUILDING": "Farallones",
+				"CLASSROOM": "Sala 4",
+				"STARTS_AT": "11:00 AM",
+				"ENDS_AT": "1:00 PM"
+			}]
+		}, {
+			"DAY": "Martes",
+			"SCHEDULES": [{
+				"ID": 741,
+				"BUILDING": "Farallones",
+				"CLASSROOM": "Sala 4",
+				"STARTS_AT": "1:00 PM",
+				"ENDS_AT": "5:00 PM"
+			}]
+		}, {
+			"DAY": "Miercoles",
+			"SCHEDULES": []
+		}, {
+			"DAY": "Jueves",
+			"SCHEDULES": [{
+				"ID": 45,
+				"BUILDING": "Farallones",
+				"CLASSROOM": "Sala 4",
+				"STARTS_AT": "7:00 AM",
+				"ENDS_AT": "10:00 AM"
+			}]
+		}, {
+			"DAY": "Viernes",
+			"SCHEDULES": []
+		}, {
+			"DAY": "Sabado",
+			"SCHEDULES": []
+		}]
 }]';
     }
 }

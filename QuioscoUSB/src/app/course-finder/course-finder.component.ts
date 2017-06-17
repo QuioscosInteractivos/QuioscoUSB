@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FindCourseService } from "app/services/find-course.service";
+import { Utilities } from "app/utilities";
 
 @Component({
   selector: 'app-course-finder',
@@ -8,7 +9,7 @@ import { FindCourseService } from "app/services/find-course.service";
 })
 export class CourseFinderComponent implements OnInit {
 
-  constructor(private FindCourseService: FindCourseService) {}
+  constructor(private FindCourseService: FindCourseService, private Utilities: Utilities) {}
 
     // Título de la vista
     sbTitle: any = 'Ubica tu clase';
@@ -22,64 +23,72 @@ export class CourseFinderComponent implements OnInit {
 		// Unidades (menú)
     arMenuOptions: any = [];
 		// Dependencias de la unidad seleccionada
-		arDependencies: any = [];
+		arBuildingSchedule: any = [];
 		// Propiedad con la que se ordena la tabla
 		sbOrderProperty: any = 'DESCRIPTION';
 		// Flag que determina si el orden es ascendente o descendente
 		blReverseOrder: any = false;
+		arCourseSchedule: any = [];
 
   ngOnInit() {
     this.FindCourseService.getBuildings().then(
-      iobData => {
-          // Primer crumb
-          /*this.arBreadCrumb.push();*/
-          this.ShowSons({
-            ID: null,
-            DESCRIPTION: 'Edificios',
-            SONS: iobData
-          });
+      arbData => {
+          
+					this.Utilities.ReplaceArrayItems(this.arAllUnits, arbData);
+					// Primer crumb					
+          this.ShowSons(this.getBaseCrumb());
         }
       ).catch(
         sbError => {console.log(sbError)}
       );
-
-      /*this.FindCourseService.getBy('ID_AUDIENCE', '4').then(
-      iobData => {
-          this.arMenuOptions = iobData;
-        }
-      ).catch(
-        sbError => console.log(sbError)
-      );*/
   }
-
-  FilterSons() {
-    console.log('sadasdsad');
-  }
-
-		// Se llama al método del servicio, recibe como entrada lo mismo con lo que resolvió la promesa
-		/*categoriesRequest.getCategories('units').then(function(iarData){
-      Utilities.ReplaceArrayItems(this.arMenuOptions, iarData);
-			Utilities.ReplaceArrayItems(me.arAllUnits, iarData);
-		});*/
 		
+		getBaseCrumb() {
+			return {
+							ID: null,
+							DESCRIPTION: 'Edificios',
+							SONS: this.arAllUnits
+						};
+		}	
+
 		// Muestra las opciones hijas de una selección en el menú.
 		ShowSons(iobCrumb) {
-			/*var nuId = iobCrumb.ID,
-				nuLastCrumb = 0;*/
+			let me = this,
+			    nuId = iobCrumb.ID,
+				  nuLastCrumb = 0;
+
+			if(nuId === 'CANCEL_SEARCH'){
+				me.Utilities.ReplaceArrayItems(me.arBreadCrumb, null);
+				iobCrumb = me.getBaseCrumb();
+				// Limpiando el buscador
+				this.sbSearchString = '';
+			}
 
 			// Guardando el registro anterior en la miga de pan.
 			this.arBreadCrumb.push(iobCrumb);
-			// Reinicia las propiedades usadas para ordenar
-			//this.OrderBy('DESCRIPTION', false);
-
-      this.arMenuOptions = iobCrumb;
 			
-				// Limpiando la vista de pensum
-				//Utilities.ReplaceArrayItems(this.arDependencies);
+				// Limpiando las vistas de horarios
+				me.Utilities.ReplaceArrayItems(me.arCourseSchedule, null);
+				me.Utilities.ReplaceArrayItems(me.arBuildingSchedule, null);
+				// Se limpian las opciones del menú
+				me.Utilities.ReplaceArrayItems(me.arMenuOptions, null);
 
-        if(!iobCrumb.SCHEDULE && !iobCrumb.SONS){
+			// Si llega con info del docente entonces es horario de una materia
+			if(iobCrumb.TEACHER){
+					// Cuando se llega al horario de una clase
+					me.Utilities.ReplaceArrayItems(me.arCourseSchedule, iobCrumb.SCHEDULES);
+
+			} else if(iobCrumb.SCHEDULE){
+				// Cuando llega a la programación de auditorios de un edificio
+					me.Utilities.ReplaceArrayItems(me.arBuildingSchedule, iobCrumb.SCHEDULE);
+
+			} else if(iobCrumb.SONS){
+				// Cuando llega a la programación de auditorios de un edificio
+					me.Utilities.ReplaceArrayItems(me.arMenuOptions, iobCrumb.SONS);
+
+			} else {
 					// Cuando no hay mas hijos en el menú
-					let nuId = Number(iobCrumb.ID);
+					nuId = Number(iobCrumb.ID);
 
           console.log(nuId);
 					if (isNaN(nuId)) {
@@ -89,27 +98,16 @@ export class CourseFinderComponent implements OnInit {
 
           // Pedir los auditorios de un edificio (Vienen con su programación)
           this.FindCourseService.getAuditoriums(nuId).then(
-              iobData => {
+              iarData => {
                 // Guardando la información consultada en la selección
-                iobCrumb.SCHEDULE = iobData;
+                iobCrumb.SCHEDULE = iarData;
+								me.Utilities.ReplaceArrayItems(this.arBuildingSchedule, iarData);
+								console.log(iarData);
             }
           ).catch(
             sbError => console.log(sbError)
           );
-        }
-
-					/*categoriesRequest.getDependencies(nuId).then(function(iarData){
-						// Agrega las dependencias de la unidad seleccionada
-						Utilities.ReplaceArrayItems(this.arDependencies, iarData);
-						// Se limpian las opciones del menú
-						Utilities.ReplaceArrayItems(this.arMenuOptions);
-
-						nuLastCrumb = (this.arBreadCrumb.length - 1);
-						this.arBreadCrumb[nuLastCrumb].DEPENDENCIES = iarData;
-					});
-					// Cambia las opciones a desplegar
-					Utilities.ReplaceArrayItems(this.arMenuOptions, iobCrumb.SONS);*/
-
+			}
 		}
 
 		// inuIndex es el número de la iteración por la que va un elemento,
@@ -127,18 +125,21 @@ export class CourseFinderComponent implements OnInit {
 			this.ShowSons(obCrumb);
 		}
 
-    SearchCourse(){
+    Search(){
       console.log(this.sbSearchString);
 
-      this.FindCourseService.getCourses(this.sbSearchString).then(
+      this.FindCourseService.getCoursesSearch(this.sbSearchString).then(
         iobData => {
           // limpiando los breadcrumbs
-          this.arBreadCrumb.length = 0;
+          this.Utilities.ReplaceArrayItems(this.arBreadCrumb, [{
+            ID: 'CANCEL_SEARCH',
+            DESCRIPTION: '   X   '
+          }]);
 
           // Definiendo el nuevo inicio
           this.ShowSons({
             ID: null,
-            DESCRIPTION: 'Resultados para "' + this.sbSearchString + '"' + 'Da errores al hacer click sobre uno!!!!',
+            DESCRIPTION: 'Resultados para "' + this.sbSearchString + '"',
             SONS: iobData
           });
         }
