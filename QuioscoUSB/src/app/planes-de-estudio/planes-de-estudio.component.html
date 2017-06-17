@@ -3,7 +3,7 @@
 
 <!-- Buscador y botón -->
 <div class="searcherBar col-sm-12">
-	<input class="caja" type="text" placeholder="Buscar">
+	<input class="caja" type="text" placeholder="Buscar" [(ngModel)]="sbSearchString">
 	<button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="Search()">
 	  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 	</button>
@@ -14,7 +14,7 @@
 </div>
 
 <!-- Menú -->
-<div class="q-faculties">
+<div class="q-faculties" *ngIf="arPensum.length == 0">
 	<div [ngClass]="cellsClass" class="col-sm-3 contentBase" *ngFor='let obFaculty of arMenuFaculties'>
 		<div class="col-sm-3 treeItem" (click)="ShowSons(obFaculty)">
 			{{obFaculty.NAME}}

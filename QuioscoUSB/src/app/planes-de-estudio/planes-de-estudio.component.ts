@@ -44,6 +44,14 @@ export class PlanesDeEstudioComponent implements OnInit {
 			}
 		).catch(iobError => console.log(iobError));
 	}
+
+	getBaseCrumb() {
+		return {
+            ID: null,
+            NAME: 'Edificios',
+            SONS: this.arAllfaculties
+          };
+	}
 		
 	ShowSons = function(iobfaculty){
 		let me = this,
@@ -141,13 +149,13 @@ export class PlanesDeEstudioComponent implements OnInit {
           // Dejando solo un crumb para cancelar la búsqueda
           this.Utilities.ReplaceArrayItems(this.arBreadCrumb, [{
             ID: 'CANCEL_SEARCH',
-            DESCRIPTION: '   X   '
+            NAME: '   X   '
           }]);
 
           // Definiendo el nuevo inicio
           this.ShowSons({
             ID: 'SEARCH_RESULT',
-            DESCRIPTION: 'Resultados para "' + this.sbSearchString + '"',
+            NAME: 'Resultados para "' + this.sbSearchString + '"',
             SONS: iobData
           });
         }
