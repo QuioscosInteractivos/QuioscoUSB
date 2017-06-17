@@ -11,7 +11,7 @@
 
 <!-- Breadcrumb y subtitulo -->
 <div class="breadCrumbs col-sm-12">
-	<div *ngFor='let obCrumb of arBreadCrumb, let nuIndex=index' (click)="GoTo(nuIndex, obCrumb)">{{obCrumb.DESCRIPTION}}</div>
+	<div class="q-breadCrumbs-element" *ngFor='let obCrumb of arBreadCrumb, let nuIndex=index' (click)="GoTo(nuIndex, obCrumb)">{{obCrumb.DESCRIPTION}}</div>
 </div>
 
 <!-- Menú -->
@@ -26,9 +26,9 @@
 <!-- Tabla de dependencias -->
 <table class="q-directory-table" border="1" width="100%" *ngIf="arDependencies.length > 0">
 	<tr>
-		<th (click)="OrderBy('DESCRIPTION')" class="q-dependency col-sm-3">Dependencia</th>
-		<th (click)="OrderBy('PHONE')" class="q-phone col-sm-3">Teléfono</th>
-		<th (click)="OrderBy('EMAIL')" class="q-email col-sm-3">Correo electrónico</th>
+		<th (click)="OrderBy('DESCRIPTION')" class="q-dependency col-sm-3"><div class="q-parent-cont"><div class="q-table-description">Dependencia</div> <div class="q-icon-directory"><img src="assets/img/upDown.svg"></div></div></th>
+		<th (click)="OrderBy('PHONE')" class="q-phone col-sm-3"><div class="q-parent-cont"><div class="q-table-description">Teléfono</div> <div class="q-icon-directory"><img src="assets/img/upDown.svg"></div></div></th>
+		<th (click)="OrderBy('EMAIL')" class="q-email col-sm-3"><div class="q-parent-cont"><div class="q-table-description">Correo electrónico</div> <div class="q-icon-directory"><img src="assets/img/upDown.svg"></div></div></th>
 	</tr>
 	
   <!-- Información de cada dependencia -->
@@ -38,3 +38,4 @@
 		<td class="q-directory-result col-sm-3">{{obDependency.EMAIL}}</td>
 	</tr>
 </table>
+<!--<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->

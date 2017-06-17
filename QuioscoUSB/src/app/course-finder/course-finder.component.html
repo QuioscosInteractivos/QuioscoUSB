@@ -16,7 +16,7 @@
 <div class="q-search-hint">Consulte una materia por su nombre o docente.</div>
 <!-- Breadcrumb y subtitulo -->
 <div class="breadCrumbs col-sm-12">
-	<div *ngFor='let obCrumb of arBreadCrumb, let nuIndex=index' (click)="GoTo(nuIndex, obCrumb)">{{obCrumb.DESCRIPTION}} >></div>
+	<div class="q-breadCrumbs-element" *ngFor='let obCrumb of arBreadCrumb, let nuIndex=index' (click)="GoTo(nuIndex, obCrumb)">{{obCrumb.DESCRIPTION}}</div>
 </div>
 
 <!-- Menú -->

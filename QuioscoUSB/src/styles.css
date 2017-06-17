@@ -21,6 +21,11 @@ app-sidebar li{
     font-weight: bold;
     text-align: center;
     border-bottom:1px solid #ffffff;
+    
+}
+.nav>li{
+    display: inline-flex;
+    padding-left: 1rem;
 }
 .logo img{
     width: 100%;
@@ -29,7 +34,14 @@ app-sidebar li{
     margin:0 25% 0 25%;
 }
 .q-tabSelected {
-    background-color: green;
+    background-color: #059D8E;
+}
+.q-icon{
+    width: 20%;
+}
+.q-description{
+    width: 80%;
+    padding: 1rem;
 }
 /*****************************************SIDEBAR*****************************/
 /*********************************TOPBAR**********************************/
@@ -89,11 +101,8 @@ app-view-content{
     border-radius: 5px;
     text-align:center;
     position:relative;
-    /*box-shadow: 0 -2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }
-/*.contentBase{
-    display: flex;
-}*/
+
 .treeItem{
     background-color: rgb(178, 71, 0);
     margin: 2rem 0;
@@ -140,6 +149,18 @@ app-view-content{
     text-align: center;
     font-weight: bold;
 }
+.q-icon-directory{
+    width: 10%;
+}
+.q-icon-directory img{
+    width: 50%;
+}
+.q-parent-cont{
+    display: inline-flex;
+}
+.q-table-description{
+width: 90%;
+}
 /****************************************DIRECTORIO*****************************************/
 /****************************************CARTELERAS*****************************************/
 app-news .sppMask{
@@ -167,10 +188,6 @@ app-news iframe{
 	width: 3rem;
 	height: 3rem;
 }
-.courseTypeSize {
-	width: 1rem;
-	height: 3rem;
-}
 /* Colores de los tipos de clases (pensum) */
 .red {
 	background-color: red;
@@ -195,4 +212,117 @@ app-news iframe{
 .q-semester{
     width: 30%;
     margin: 1rem 1.5rem;
+    padding: 0;
+}
+.q-subject{
+    display: inline-flex;
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #f6f6f6;
+    vertical-align: top;
+}
+.courseTypeSize{
+    width: 2%;    
+}
+.q-subject-name{
+    width: 85%;
+    text-align: left;
+    color:#313732;
+    padding: 1rem;
+    border-left: 1px solid #f6f6f6;
+    border-right: 1px solid #f6f6f6;
+}
+.q-credits{
+    color:gray;
+    font-size: 1.1rem;
+    padding: 0.5rem;
+}
+.q-semester-tittle{
+    display: inline-flex;
+    width: 100%;
+    background-color: #313732;
+    /*border-top-left-radius: 5px;
+    border-top-right-radius: 5px;*/
+}
+.q-semester-name{
+    width: 90%;
+    text-align: center;
+    margin: auto;
+}
+.q-semester-credits{
+    color:#ffffff;
+    font-size: 1.1rem;
+    padding: 0.5rem;
+}
+.q-courses-types{
+    display: inline-flex;
+    width: 90%;
+    margin-left: 1.5rem;
+}
+.q-type{
+    display: inline-flex;
+    margin: 0.5rem 1rem;
+}
+.courseTypeLegendSize{
+    margin-right: 0.5rem;
+}
+.q-type-description{
+    padding: 0.5rem;
+}
+/****************************MIGA DE PAN****************************/
+.breadCrumbs{
+    display: inline-flex;      
+    margin-bottom: 5rem;
+}
+.q-breadCrumbs-element{
+ color: #ffffff;
+ font-weight: bold;
+ display: block;
+ background: #059D8E;
+ text-decoration: none;
+ position: relative;
+ height: 40px;
+ line-height: 40px;
+ padding: 0 10px 0 5px;
+ text-align: center;
+ margin-right: 23px;
+}
+.q-breadCrumbs-element:first-child{
+ border-top-left-radius: 5px;
+ border-bottom-left-radius: 5px;
+}
+.q-breadCrumbs-element:last-child{
+ padding-right: 15px;
+ border-radius: 0 4px 4px 0;
+ background-color: transparent;
+ color:#059D8E;
+ border: none
+ }
+.q-breadCrumbs-element:first-child:before{
+ border: none;
+}
+.q-breadCrumbs-element:last-child:after{
+ border: none;
+}
+.q-breadCrumbs-element:last-child:before{
+ border: none;
+}
+.q-breadCrumbs-element:before, .q-breadCrumbs-element:after{
+ content: "";
+ position: absolute;
+ top: 0;
+ border: 0 solid #059D8E;
+ border-width: 20px 10px;
+ width: 0;
+ height: 0;
+}
+.q-breadCrumbs-element:before{
+ left: -20px;
+ border-left-color: transparent;
+}
+
+.q-breadCrumbs-element:after{
+ left: 100%;
+ border-color: transparent;
+ border-left-color: #059D8E;
 }
