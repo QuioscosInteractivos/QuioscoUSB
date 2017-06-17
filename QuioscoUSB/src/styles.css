@@ -28,6 +28,9 @@ app-sidebar li{
 .q-weather{
     margin:0 25% 0 25%;
 }
+.q-tabSelected {
+    background-color: green;
+}
 /*****************************************SIDEBAR*****************************/
 /*********************************TOPBAR**********************************/
 .viewTopbar{

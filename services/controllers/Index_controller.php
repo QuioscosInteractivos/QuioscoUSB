@@ -200,7 +200,7 @@ class Index_controller extends BServiceController {
     }
 
     public function getCarrers($inuId){
-        $auditorio = Carreras::where("ID_FACULTY", $inuId);
+        //$auditorio = Carreras::where("ID_FACULTY", $inuId);
         /*if (!empty($auditorio) || is_array($auditorio)) {
             print json_encode($auditorio);
 
