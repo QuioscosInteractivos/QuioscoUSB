@@ -31,28 +31,36 @@
 			<div>{{obCourseType.DESCRIPTION}}</div>
 		</div>
 	</div>
+	
+
+	<div class="q-semesters-content">
 
 	<!-- Semestres -->
-	<div class="contentBase" *ngFor='let obSemester of obCarrer.SEMESTERS'>
-		<div class="col-sm-3 treeItem">
-			<div>
-				<div>
-					{{obSemester.SEMESTER_NAME}}
+		<div class="contentBase" *ngFor='let obSemester of obCarrer.SEMESTERS'>
+			<div class="col-sm-3 q-semester treeItem">
+				<div data-toggle="collapse" data-target=".courses">
+					<div>
+						{{obSemester.SEMESTER_NAME}}
+					</div>
+					<div>
+						Créditos: {{getTotalCredits(obSemester)}}
+					</div>
 				</div>
-				<div>
-					Créditos: {{getTotalCredits(obSemester)}}
-				</div>
-			</div>
 
-			<!-- Marerias -->
-			<div *ngFor="let obCourse of obSemester.SUBJECTS">
-				<div [ngClass]="getCourseTypeColor(obCourse.ID_GROUPER)" class="courseTypeSize"></div>
-				<div>{{obCourse.NAME}}</div>
-				<div>
-					<div>{{obCourse.CREDITS}}</div>
-					<div>créditos</div>
+				<!-- Marerias -->
+				<div class="collapse" class="courses">
+					<div *ngFor="let obCourse of obSemester.SUBJECTS">
+						<div [ngClass]="getCourseTypeColor(obCourse.ID_GROUPER)" class="courseTypeSize"></div>
+						<div>{{obCourse.NAME}}</div>
+						<div>
+							<div>{{obCourse.CREDITS}}</div>
+							<div>créditos</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+ 

@@ -184,3 +184,12 @@ app-news iframe{
 .yellow {
 	background-color: yellow;
 }
+.q-semesters-content{
+    width: 90%;
+    background: red;
+    margin: auto;
+}
+.q-semester{
+    width: 30%;
+    margin: 1rem 1.5rem;
+}
