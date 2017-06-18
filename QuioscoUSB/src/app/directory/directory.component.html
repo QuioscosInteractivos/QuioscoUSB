@@ -3,7 +3,7 @@
 
 <!-- Buscador y botón -->
 <div class="searcherBar col-sm-12">
-	<input class="caja" type="text" placeholder="Buscar" [(ngModel)]="sbSearchString">
+	<input class="caja" type="text" placeholder="{{sbSearchPaceholder}}" [(ngModel)]="sbSearchString">
 	<button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="Search()">
 	  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 	</button>

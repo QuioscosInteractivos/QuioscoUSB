@@ -675,7 +675,8 @@ class Index_controller extends BServiceController {
     }
 
     public function getCarrersSearch($isbSearchString){
-       // $buildings = Carreras::searchFor("NAME", $isbSearchString);
+       $buildings = Carreras::searchFor("NAME", $isbSearchString);
+	   
 		//$like= 'NAME LIKE "%' . $isbSearchString . '%"';
 		//print $like;
 		//$buildings = Carreras::search('carreras', 'OBJECT',$like);
@@ -701,14 +702,14 @@ class Index_controller extends BServiceController {
 		//print_r($cosa);
 
 
-        /*if (!empty($buildings) || is_array($buildings)) {
+        if (!empty($buildings) || is_array($buildings)) {
             print json_encode($buildings);
             
         } else {
             print json_encode($buildings->toArray());
-        }*/
+        }
 
-		print '[{
+		/*print '[{
 	"NAME":"Ingeniería Multimedia",
 	"GROUPERS":[{"DESCRIPTION":"Ciencias básicas", "ID":1},{"DESCRIPTION":"Ciencias básicas en ingeniería", "ID":2},{"DESCRIPTION":"Ingeniería aplicada", "ID":3},{"DESCRIPTION":"Complementaria", "ID":4}],
 	"SEMESTERS":[
@@ -1492,7 +1493,7 @@ class Index_controller extends BServiceController {
                     "CREDITS": 2
                 }]
             }]
-}]';
+}]';*/
     }
 
 	public function getCoursesSearch($isbSearchString){
