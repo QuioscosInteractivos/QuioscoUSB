@@ -14,6 +14,7 @@ export class DirectoryComponent implements OnInit {
 		// Título de la vista
     sbTitle: String = 'Directorio institucional';
 		sbSearchPaceholder: String = 'Buscar dependencia';
+		sbSearchHint: String = '';
     // Parámetro de búsqueda
     sbSearchString: String = '';
 		// Elementos de la miga de pan

@@ -15,9 +15,10 @@ export class PlanesDeEstudioComponent implements OnInit {
   // Título de la vista
     sbTitle: any = 'Planes de estudio';
 	sbSearchPaceholder: String = 'Buscar planes de estudio';
+	sbSearchHint: String = '';
+	// Mensajes
 	sbErrorMessage: String = '';
 	sbMaskMessage: String = '';
-
 	// Parámetro de búsqueda
     sbSearchString: String = '';
 	// Elementos de la miga de pan

@@ -6,14 +6,16 @@
 <app-titlebar [sbTitle]='sbTitle'></app-titlebar>
 
 <!-- Buscador y botón -->
-
-<div class="searcherBar col-sm-12">
-	<input class="caja" type="text" placeholder="{{sbSearchPaceholder}}" [(ngModel)]="sbSearchString">
-	<button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="Search()">
-	  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-	</button>
+<div class="searcherContainer col-sm-12">
+	<div class="searcherBar">
+		<input class="caja" type="text" placeholder="{{sbSearchPaceholder}}" [(ngModel)]="sbSearchString">
+		<button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="Search()">
+		<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+		</button>
+	</div>
+	<div class="q-search-hint">{{sbSearchHint}}</div>
 </div>
-<div class="q-search-hint">Consulte una materia por su nombre o docente.</div>
+
 <!-- Breadcrumb y subtitulo -->
 <div class="breadCrumbs col-sm-12">
 	<div class="q-breadCrumbs-element" *ngFor='let obCrumb of arBreadCrumb, let nuIndex=index' (click)="GoTo(nuIndex, obCrumb)">{{obCrumb.DESCRIPTION}}</div>
@@ -37,8 +39,7 @@
 
 		<!-- Materias -->
 		<div class="collapse" class="courses">
-			<div *ngFor="let obClass of obClassRoom.SCHEDULES">
-				<div class="courseTypeSize"></div>
+			<div class='q-ScheduleItem' *ngFor="let obClass of obClassRoom.SCHEDULES">
 				<div>{{obClass.DESCRIPTION}}</div>
 				<div>{{obClass.STARTS_AT}} - {{obClass.ENDS_AT}}</div>
 				<div>{{obClass.TEACHER}}</div>
@@ -50,20 +51,20 @@
 <!-- Horario de una materia -->
 <div class="contentBase" *ngFor='let obDay of arCourseSchedule'>
 	<div class="col-sm-3 q-semester treeItem">
+
 		<div data-toggle="collapse" data-target=".courses">
 			<div>
 				{{obDay.DAY}}
 			</div>
 		</div>
-
 		<!-- Materias -->
-	<div class="collapse" class="courses">
-			<div *ngFor="let obSchedule of obDay.SCHEDULES">
-				<div class="courseTypeSize"></div>
-					<div>{{obSchedule.STARTS_AT}} - {{obSchedule.ENDS_AT}}</div>
-					<div>{{obSchedule.BUILDING}}</div>
-					<div>{{obSchedule.CLASSROOM}}</div>
+		<div class="collapse" class="courses">
+			<div class='q-ScheduleItem' *ngFor="let obSchedule of obDay.SCHEDULES">
+				<div>{{obSchedule.STARTS_AT}} - {{obSchedule.ENDS_AT}}</div>
+				<div>{{obSchedule.BUILDING}}</div>
+				<div>{{obSchedule.CLASSROOM}}</div>
 			</div>
 		</div>
+
 	</div>
 </div>

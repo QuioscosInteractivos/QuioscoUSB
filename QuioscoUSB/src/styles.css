@@ -6,6 +6,11 @@ app-root{
 }
 app-view-content{
     flex-basis: 80% !important;
+    background-image: url(assets/img/fondo.svg);
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-y: auto;
 }
 /* Mascara */
 .q-Mask {
@@ -85,20 +90,32 @@ app-sidebar li{
 
 /***************************************/
 /*************************************SEARCHER******************************************/
+.searcherContainer {
+    margin-bottom: 3rem;
+}
 .searcherBar{
     border: 1px solid #474747;
     width: 80%;
-    margin: 0 10% 0 10%;
     border-radius: 1em;
-    margin-bottom: 3rem;
+    margin: auto;
     background-color: #ffffff;
+    display: flex;
 }
 .searcherBar input{
     width: 80%;
     border: none;
+    background-color: transparent;
+    padding-left: 1rem;
+    flex: 3;
 }
 .searcherBar button{
     border: none;
+    flex: 1;
+    max-width: 5rem;
+    background-color: transparent;
+    background-color: orange;
+    border-radius: 0 1em 1em 0;
+    border-left: 1px solid black;
 }
 /*************************************SEARCHER******************************************/
 app-view-content{
@@ -107,8 +124,16 @@ app-view-content{
 /***************************************UBICA TU CLASE*************************************/
 .q-search-hint{
     margin: auto;
-    width: 80%;
-    text-align: center;
+    width: 75%;
+    padding-left: 1rem;
+    background-color: lightgrey;
+    font-size: 1.2em;
+    border-radius: 0 0 1em 1em;
+}
+
+.q-ScheduleItem {
+    color: black;
+    border-bottom: black 1px solid;
 }
 /***************************************UBICA TU CLASE*************************************/
 /****************************************DIRECTORIO*****************************************/
@@ -125,12 +150,14 @@ app-view-content{
     background-color: rgb(178, 71, 0);
     margin: 2rem 0;
     width: 100%;
-    padding: 1rem;
+    /*padding: 1rem;*/
     text-align: center;
     font-weight: bold;
     color:white;
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 5rem;
+    padding: 0.4em;
 }
 .q-directory-table{
     border: 1px solid white;
@@ -224,13 +251,13 @@ app-news iframe{
 }
 .q-semesters-content{
     width: 90%;
-    background: red;
     margin: auto;
 }
 .q-semester{
     width: 30%;
     margin: 1rem 1.5rem;
     padding: 0;
+    height: auto;
 }
 .q-subject{
     display: inline-flex;
@@ -277,6 +304,11 @@ app-news iframe{
     width: 90%;
     margin-left: 1.5rem;
 }
+.courses{
+    
+    height: 46rem;
+    background-color: #ffffff;
+}
 .q-type{
     display: inline-flex;
     margin: 0.5rem 1rem;
@@ -287,6 +319,7 @@ app-news iframe{
 .q-type-description{
     padding: 0.5rem;
 }
+
 /****************************MIGA DE PAN****************************/
 .breadCrumbs{
     display: inline-flex;      

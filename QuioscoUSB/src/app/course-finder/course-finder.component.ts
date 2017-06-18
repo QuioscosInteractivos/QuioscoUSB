@@ -14,6 +14,7 @@ export class CourseFinderComponent implements OnInit {
     // Título de la vista
     sbTitle: String = 'Ubica tu clase';
 		sbSearchPaceholder: String = 'Buscar cursos';
+		sbSearchHint: String = 'Consulte una materia por su nombre o docente.';
     // Parámetro de búsqueda
     sbSearchString: String = '';
     // Receptor de peticiones
