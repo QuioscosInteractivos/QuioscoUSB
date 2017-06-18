@@ -79,7 +79,7 @@ export class PlanesDeEstudioComponent implements OnInit {
 			// Limpiando la vista de pensum
 			this.Utilities.ReplaceArrayItems(me.arPensum);
 
-			if (!iobfaculty.SONS || (iobfaculty.SONS.length === 0)) {
+			if (!iobfaculty.SONS) {
 				// Cuando no hay mas hijos en el menú
 				let nuId = Number(iobfaculty.ID);
 
@@ -162,18 +162,21 @@ export class PlanesDeEstudioComponent implements OnInit {
 
 			this.PlanesDeEstudioService.getCarrersSearch(this.sbSearchString).then(
 				iobData => {
-				// Dejando solo un crumb para cancelar la búsqueda
-				this.Utilities.ReplaceArrayItems(this.arBreadCrumb, [{
-					ID: 'CANCEL_SEARCH',
-					NAME: '   X   '
-				}]);
 
-				// Definiendo el nuevo inicio
-				this.ShowSons({
-					ID: 'SEARCH_RESULT',
-					NAME: 'Resultados para "' + this.sbSearchString + '"',
-					SONS: iobData
-				});
+				//if(iobData.length > 0) {
+					// Dejando solo un crumb para cancelar la búsqueda
+					this.Utilities.ReplaceArrayItems(this.arBreadCrumb, [{
+						ID: 'CANCEL_SEARCH',
+						NAME: '   X   '
+					}]);
+
+					// Definiendo el nuevo inicio
+					this.ShowSons({
+						ID: 'SEARCH_RESULT',
+						NAME: 'Resultados para "' + this.sbSearchString + '"',
+						SONS: iobData
+					});
+				//}
 				
 				// Removiendo mascara
 				this.sbMaskMessage = '';
