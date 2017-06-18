@@ -22,7 +22,7 @@ class Edificiosauditorios extends BModel {
         $this->DESCRIPTION = $DESCRIPTION;
     }
 
-    public function getID(): int {
+    public function getID(){
         return $this->ID;
     }
 
