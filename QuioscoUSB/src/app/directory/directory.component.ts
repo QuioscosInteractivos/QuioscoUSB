@@ -12,7 +12,8 @@ export class DirectoryComponent implements OnInit {
   constructor(private DirectoryService: DirectoryService, private Utilities: Utilities) { }
 
 		// Título de la vista
-    sbTitle: any = 'Directorio institucional';
+    sbTitle: String = 'Directorio institucional';
+		sbSearchPaceholder: String = 'Buscar dependencia';
     // Parámetro de búsqueda
     sbSearchString: String = '';
 		// Elementos de la miga de pan

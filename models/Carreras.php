@@ -12,24 +12,24 @@
  
 class Carreras extends BModel {
 
-    private $ID_CAREER;
+    private $ID;
     private $NAME;
     private $TYPE;
     private $OBJECT;
     private $ID_FACULTY;
 
-    public function __construct( $ID_CAREER,  string $NAME, int $TYPE, string $OBJECT, int $ID_FACULTY) {
+    public function __construct( $ID,  string $NAME, int $TYPE, string $OBJECT, int $ID_FACULTY) {
 
         parent::__construct();
-        $this->ID_CAREER = $ID_CAREER;
+        $this->ID = $ID;
         $this->NAME = $NAME;
         $this->TYPE = $TYPE;
         $this->OBJECT = $OBJECT;
         $this->ID_FACULTY = $ID_FACULTY;
     }
 
-    public function getID_CAREER(): int {
-        return $this->ID_CAREER;
+    public function getID(): int {
+        return $this->ID;
     }
 
     public function getNAME(): string {
@@ -48,8 +48,8 @@ class Carreras extends BModel {
         return $this->ID_FACULTY;
     }
 
-    public function setID_CAREER(int $ID_CAREER) {
-        $this->ID_CAREER = $ID_CAREER;
+    public function setID(int $ID) {
+        $this->ID = $ID;
     }
 
     public function setNAME(string $NAME) {

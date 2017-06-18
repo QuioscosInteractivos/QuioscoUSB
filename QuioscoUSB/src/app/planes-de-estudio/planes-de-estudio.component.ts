@@ -14,6 +14,10 @@ export class PlanesDeEstudioComponent implements OnInit {
   // Inicializando
   // Título de la vista
     sbTitle: any = 'Planes de estudio';
+	sbSearchPaceholder: String = 'Buscar planes de estudio';
+	sbErrorMessage: String = '';
+	sbMaskMessage: String = '';
+
 	// Parámetro de búsqueda
     sbSearchString: String = '';
 	// Elementos de la miga de pan
@@ -72,8 +76,6 @@ export class PlanesDeEstudioComponent implements OnInit {
 			this.Utilities.ReplaceArrayItems(me.arMenuFaculties);
 
 		} else {
-			// Guardando el registro anterior en la miga de pan.
-			me.arBreadCrumb.push(iobfaculty);
 			// Limpiando la vista de pensum
 			this.Utilities.ReplaceArrayItems(me.arPensum);
 
@@ -82,9 +84,12 @@ export class PlanesDeEstudioComponent implements OnInit {
 				let nuId = Number(iobfaculty.ID);
 
 				if (isNaN(nuId)) {
-					console.log('No es un ID válido');
+					console.log('No es un ID válido ( ' + nuId + ' | ' + iobfaculty.ID + ' )');
 					return;
 				}
+
+				// Guardando el registro anterior en la miga de pan.
+				me.arBreadCrumb.push(iobfaculty);
 
 				this.PlanesDeEstudioService.getCarrers(nuId).then(
 					iobData=>{
@@ -97,6 +102,8 @@ export class PlanesDeEstudioComponent implements OnInit {
 				).catch(iobError=>console.log(iobError));
 
 			} else {
+				// Guardando el registro anterior en la miga de pan.
+				me.arBreadCrumb.push(iobfaculty);
 				// Cambia las opciones a desplegar
 				this.Utilities.ReplaceArrayItems(me.arMenuFaculties, iobfaculty.SONS);
 			}
@@ -141,24 +148,42 @@ export class PlanesDeEstudioComponent implements OnInit {
 			return nuTotal;
 		}
 
-		Search(){
-      console.log(this.sbSearchString);
+	Search(){
+		console.log(this.sbSearchString);
 
-      this.PlanesDeEstudioService.getCarrersSearch(this.sbSearchString).then(
-        iobData => {
-          // Dejando solo un crumb para cancelar la búsqueda
-          this.Utilities.ReplaceArrayItems(this.arBreadCrumb, [{
-            ID: 'CANCEL_SEARCH',
-            NAME: '   X   '
-          }]);
+		let sbSearch = this.sbSearchString.trim();
 
-          // Definiendo el nuevo inicio
-          this.ShowSons({
-            ID: 'SEARCH_RESULT',
-            NAME: 'Resultados para "' + this.sbSearchString + '"',
-            SONS: iobData
-          });
-        }
-      ).catch(iobError => console.log(iobError))
-    }
+		if(sbSearch.length < 4 ){
+			console.log('Por favor ingrese mas información.');
+
+		} else {
+			// Removiendo mascara
+			this.sbMaskMessage = 'Consultando planes de estudio';
+
+			this.PlanesDeEstudioService.getCarrersSearch(this.sbSearchString).then(
+				iobData => {
+				// Dejando solo un crumb para cancelar la búsqueda
+				this.Utilities.ReplaceArrayItems(this.arBreadCrumb, [{
+					ID: 'CANCEL_SEARCH',
+					NAME: '   X   '
+				}]);
+
+				// Definiendo el nuevo inicio
+				this.ShowSons({
+					ID: 'SEARCH_RESULT',
+					NAME: 'Resultados para "' + this.sbSearchString + '"',
+					SONS: iobData
+				});
+				
+				// Removiendo mascara
+				this.sbMaskMessage = '';
+			}
+			).catch(iobError => {
+				// Removiendo mascara
+				this.sbMaskMessage = '';
+				this.sbErrorMessage = iobError;
+				console.log(iobError);
+			})
+		}
+	}
 }

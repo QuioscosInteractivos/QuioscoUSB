@@ -12,7 +12,8 @@ export class CourseFinderComponent implements OnInit {
   constructor(private FindCourseService: FindCourseService, private Utilities: Utilities) {}
 
     // Título de la vista
-    sbTitle: any = 'Ubica tu clase';
+    sbTitle: String = 'Ubica tu clase';
+		sbSearchPaceholder: String = 'Buscar cursos';
     // Parámetro de búsqueda
     sbSearchString: String = '';
     // Receptor de peticiones
