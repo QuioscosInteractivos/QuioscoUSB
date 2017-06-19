@@ -1,8 +1,9 @@
 <!-- Barra de título -->
 <app-titlebar [sbTitle]='sbTitle'></app-titlebar>
 
+<app-searcher (arSearchResults)='onSearchResults($event)' [sbSearchPaceholder]='sbSearchPaceholder' [sbSearchHint]='sbSearchHint' [obService]='obService'></app-searcher>
 <!-- Buscador y botón -->
-<div class="searcherContainer col-sm-12">
+<!-- <div class="searcherContainer col-sm-12">
 	<div class="searcherBar">
 		<input class="caja" type="text" placeholder="{{sbSearchPaceholder}}" [(ngModel)]="sbSearchString">
 		<button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="Search()">
@@ -10,7 +11,7 @@
 		</button>
 	</div>
 	<div class="q-search-hint">{{sbSearchHint}}</div>
-</div>
+</div> -->
 
 <!-- Breadcrumb y subtitulo -->
 <div class="breadCrumbs col-sm-12">
@@ -71,8 +72,8 @@
 </div>
 
  <!-- Máscara -->
- <div class='q-Mask' *ngIf='sbMaskMessage'>{{sbMaskMessage}}</div>
+ <!--<div class='q-Mask' *ngIf='sbMaskMessage'>{{sbMaskMessage}}</div> -->
   <!-- Máscara de error -->
- <div class='q-Mask' *ngIf='sbErrorMessage'>
+ <!--<div class='q-Mask' *ngIf='sbErrorMessage'>
 	 <div class="q-errorMsg">{{sbErrorMessage}}</div>
- </div>
+ </div> -->

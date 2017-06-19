@@ -1,0 +1,17 @@
+<!-- Buscador y botón -->
+<div class="searcherContainer col-sm-12">
+	<div class="searcherBar">
+		<input class="caja" type="text" placeholder="{{sbSearchPaceholder}}" [(ngModel)]="sbSearchString">
+		<button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="Search()">
+		<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+		</button>
+	</div>
+	<div class="q-search-hint">{{sbSearchHint}}</div>
+</div>
+
+ <!-- Máscara -->
+ <div class='q-Mask' *ngIf='sbMaskMessage'>{{sbMaskMessage}}</div>
+  <!-- Máscara de error -->
+ <div class='q-Mask' *ngIf='sbErrorMessage'>
+	 <div class="q-errorMsg">{{sbErrorMessage}}</div>
+ </div>

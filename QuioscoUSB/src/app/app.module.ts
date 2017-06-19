@@ -17,6 +17,7 @@ import { PlanesDeEstudioService } from "app/services/planes-de-estudio.service";
 import { Utilities } from "app/utilities";
 import { ServicesUtilities } from "app/services/services-utilities";
 import { TitlebarComponent } from './titlebar/titlebar.component';
+import { SearcherComponent } from './searcher/searcher.component';
 
 @NgModule({
   declarations: [
@@ -28,14 +29,15 @@ import { TitlebarComponent } from './titlebar/titlebar.component';
     DirectoryComponent,
     MapComponent,
     CourseFinderComponent,
-    TitlebarComponent
+    TitlebarComponent,
+    SearcherComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [FindCourseService,DirectoryService,PlanesDeEstudioService,Utilities,ServicesUtilities],
+  providers: [FindCourseService,DirectoryService,PlanesDeEstudioService,Utilities,ServicesUtilities,SearcherComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

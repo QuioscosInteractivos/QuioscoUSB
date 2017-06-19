@@ -104,10 +104,16 @@ app-sidebar li{
 .searcherBar input{
     width: 80%;
     border: none;
+    border-radius: 1em 0 0 1em;
     background-color: transparent;
     padding-left: 1rem;
     flex: 3;
 }
+.searcherBar input:focus{
+    outline: none;
+    box-shadow: 0em 0em 6pt 1pt #34b0c1;
+}
+
 .searcherBar button{
     border: none;
     flex: 1;
@@ -117,11 +123,7 @@ app-sidebar li{
     border-radius: 0 1em 1em 0;
     border-left: 1px solid black;
 }
-/*************************************SEARCHER******************************************/
-app-view-content{
-    flex-basis: 70%;
-}
-/***************************************UBICA TU CLASE*************************************/
+
 .q-search-hint{
     margin: auto;
     width: 75%;
@@ -130,7 +132,11 @@ app-view-content{
     font-size: 1.2em;
     border-radius: 0 0 1em 1em;
 }
-
+/*************************************SEARCHER******************************************/
+app-view-content{
+    flex-basis: 70%;
+}
+/***************************************UBICA TU CLASE*************************************/
 .q-ScheduleItem {
     color: black;
     border-bottom: black 1px solid;

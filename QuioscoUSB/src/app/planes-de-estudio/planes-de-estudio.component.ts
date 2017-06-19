@@ -16,6 +16,7 @@ export class PlanesDeEstudioComponent implements OnInit {
     sbTitle: any = 'Planes de estudio';
 	sbSearchPaceholder: String = 'Buscar planes de estudio';
 	sbSearchHint: String = '';
+	obService: any = this.PlanesDeEstudioService.getCarrersSearch.bind(this.PlanesDeEstudioService);
 	// Mensajes
 	sbErrorMessage: String = '';
 	sbMaskMessage: String = '';
@@ -149,7 +150,7 @@ export class PlanesDeEstudioComponent implements OnInit {
 			return nuTotal;
 		}
 
-	Search(){
+	/*Search(){
 		console.log(this.sbSearchString);
 
 		let sbSearch = this.sbSearchString.trim();
@@ -189,5 +190,19 @@ export class PlanesDeEstudioComponent implements OnInit {
 				console.log(iobError);
 			})
 		}
+	}*/
+
+	onSearchResults(iarData) {
+		this.Utilities.ReplaceArrayItems(this.arBreadCrumb, [{
+			ID: 'CANCEL_SEARCH',
+			NAME: '   X   '
+		}]);
+
+		// Definiendo el nuevo inicio
+		this.ShowSons({
+			ID: 'SEARCH_RESULT',
+			NAME: 'Resultados para "' + iarData.searchString + '"',
+			SONS: iarData.results
+		});
 	}
 }
