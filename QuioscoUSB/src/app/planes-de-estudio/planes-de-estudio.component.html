@@ -1,17 +1,19 @@
 <!-- Barra de título -->
 <app-titlebar [sbTitle]='sbTitle'></app-titlebar>
 
-<app-searcher (arSearchResults)='onSearchResults($event)' [sbSearchPaceholder]='sbSearchPaceholder' [sbSearchHint]='sbSearchHint' [obService]='obService'></app-searcher>
 <!-- Buscador y botón -->
-<!-- <div class="searcherContainer col-sm-12">
+<div class="searcherContainer col-sm-12">
 	<div class="searcherBar">
 		<input class="caja" type="text" placeholder="{{sbSearchPaceholder}}" [(ngModel)]="sbSearchString">
 		<button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="Search()">
 		<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 		</button>
 	</div>
-	<div class="q-search-hint">{{sbSearchHint}}</div>
-</div> -->
+	<div *ngIf='sbSearchRestriction || sbSearchHint' class="q-search-hint">
+		<p class='q-restriction'>{{sbSearchRestriction}}</p>
+		<p>{{sbSearchHint}}</p>
+	</div>
+</div>
 
 <!-- Breadcrumb y subtitulo -->
 <div class="breadCrumbs col-sm-12">
@@ -25,12 +27,14 @@
 			{{obFaculty.NAME}}
 		</div>
 	</div>
+	<div *ngIf="arMenuFaculties.length === 0">No hay datos.</div>
 </div>
 
-<!-- plan de estudio seleccionado -->
+<!-- Plan de estudio seleccionado -->
 <div *ngFor='let obCarrer of arPensum'>
 	<!-- Tipos de materias -->
 	<div class="q-courses-types">
+		<div *ngIf="obCarrer.GROUPERS.length === 0">No hay datos.</div>
 		<div class="contentBase" *ngFor='let obCourseType of obCarrer.GROUPERS'>
 			<div class="q-type">
 				<div [ngClass]="getCourseTypeColor(obCourseType.ID)" class="courseTypeLegendSize"></div>
@@ -43,6 +47,7 @@
 	<div class="q-semesters-content">
 
 	<!-- Semestres -->
+		<div *ngIf="obCarrer.SEMESTERS.length === 0">No hay datos.</div>
 		<div class="contentBase" *ngFor='let obSemester of obCarrer.SEMESTERS'>
 			<div class="col-md-3 q-semester treeItem">
 				<div data-toggle="collapse" data-target=".courses" class="q-semester-tittle">
@@ -57,6 +62,7 @@
 
 				<!-- Materias -->
 				<div class="collapse" class="courses">
+					<div *ngIf="obSemester.SUBJECTS.length === 0">No hay datos.</div>
 					<div *ngFor="let obCourse of obSemester.SUBJECTS" class="q-subject">
 						<div [ngClass]="getCourseTypeColor(obCourse.ID_GROUPER)" class="courseTypeSize"></div>
 						<div class="q-subject-name">{{obCourse.NAME}}</div>
@@ -72,8 +78,11 @@
 </div>
 
  <!-- Máscara -->
- <!--<div class='q-Mask' *ngIf='sbMaskMessage'>{{sbMaskMessage}}</div> -->
+ <div class='q-Mask' *ngIf='sbMaskMessage'>{{sbMaskMessage}}</div>
   <!-- Máscara de error -->
- <!--<div class='q-Mask' *ngIf='sbErrorMessage'>
+ <div class='q-Mask' *ngIf='sbErrorMessage'>
 	 <div class="q-errorMsg">{{sbErrorMessage}}</div>
- </div> -->
+	 <button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="CloseErrorMsg()">
+		<span class="">Cerrar</span>
+		</button>
+ </div>

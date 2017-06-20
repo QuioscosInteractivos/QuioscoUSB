@@ -124,13 +124,23 @@ app-sidebar li{
     border-left: 1px solid black;
 }
 
+.searcherBar button:focus{
+    outline: none !important;
+}
+
 .q-search-hint{
     margin: auto;
     width: 75%;
-    padding-left: 1rem;
+    padding: 0.5rem 1rem;
     background-color: lightgrey;
     font-size: 1.2em;
     border-radius: 0 0 1em 1em;
+}
+.q-search-hint p {
+    margin: 0;
+}
+.q-restriction {
+    color: red;
 }
 /*************************************SEARCHER******************************************/
 app-view-content{

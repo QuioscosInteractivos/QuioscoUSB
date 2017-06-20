@@ -13,12 +13,15 @@ export class CourseFinderComponent implements OnInit {
 
     // Título de la vista
     sbTitle: String = 'Ubica tu clase';
+		// Buscador
 		sbSearchPaceholder: String = 'Buscar cursos';
 		sbSearchHint: String = 'Consulte una materia por su nombre o docente.';
+		sbSearchRestriction: string = '';
+		// Mensajes
+		sbErrorMessage: String = '';
+		sbMaskMessage: String = '';
     // Parámetro de búsqueda
     sbSearchString: String = '';
-    // Receptor de peticiones
-    iobData: any = [];
     arBreadCrumb: any = [];
 		// Unidades (menú)
 		arAllUnits: any = [];
@@ -33,16 +36,25 @@ export class CourseFinderComponent implements OnInit {
 		arCourseSchedule: any = [];
 
   ngOnInit() {
+		// Añadiendo mascara
+		this.sbMaskMessage = 'Consultando edificios';
+
     this.FindCourseService.getBuildings().then(
       arbData => {
           
 					this.Utilities.ReplaceArrayItems(this.arAllUnits, arbData);
 					// Primer crumb					
           this.ShowSons(this.getBaseCrumb());
+
+					// Removiendo mascara
+					this.sbMaskMessage = '';
         }
-      ).catch(
-        sbError => {console.log(sbError)}
-      );
+      ).catch(isbError => {
+					// Removiendo mascara
+					this.sbMaskMessage = '';
+					this.sbErrorMessage = isbError;
+					console.log(isbError);
+				});
   }
 		
 		getBaseCrumb() {
@@ -98,6 +110,8 @@ export class CourseFinderComponent implements OnInit {
 						return;
 					}
 
+					// Añadiendo mascara
+					this.sbMaskMessage = 'Consultando salones y auditorios';
           // Pedir los auditorios de un edificio (Vienen con su programación)
           this.FindCourseService.getAuditoriums(nuId).then(
               iarData => {
@@ -105,10 +119,16 @@ export class CourseFinderComponent implements OnInit {
                 iobCrumb.SCHEDULE = iarData;
 								me.Utilities.ReplaceArrayItems(this.arBuildingSchedule, iarData);
 								console.log(iarData);
+
+								// Removiendo mascara
+								this.sbMaskMessage = '';
             }
-          ).catch(
-            sbError => console.log(sbError)
-          );
+          ).catch(isbError => {
+						// Removiendo mascara
+						this.sbMaskMessage = '';
+						this.sbErrorMessage = isbError;
+						console.log(isbError);
+					});
 			}
 		}
 
@@ -130,7 +150,20 @@ export class CourseFinderComponent implements OnInit {
     Search(){
       console.log(this.sbSearchString);
 
-      this.FindCourseService.getCoursesSearch(this.sbSearchString).then(
+			let sbSearch = this.sbSearchString.trim();
+
+			if(sbSearch.length < 4 ){
+				this.sbSearchRestriction = '* Por favor ingrese mas de 4 caracteres.';
+				return;
+
+			} else {
+				this.sbSearchRestriction = '';
+			}
+
+			// Añadiendo mascara
+			this.sbMaskMessage = 'Consultando clases';
+
+      this.FindCourseService.getCoursesSearch(sbSearch).then(
         iobData => {
           // limpiando los breadcrumbs
           this.Utilities.ReplaceArrayItems(this.arBreadCrumb, [{
@@ -144,9 +177,21 @@ export class CourseFinderComponent implements OnInit {
             DESCRIPTION: 'Resultados para "' + this.sbSearchString + '"',
             SONS: iobData
           });
+
+					// Removiendo mascara
+					this.sbMaskMessage = '';
         }
-      ).catch(iobError => console.log(iobError))
+      ).catch(isbError => {
+				// Removiendo mascara
+				this.sbMaskMessage = '';
+				this.sbErrorMessage = isbError;
+				console.log(isbError);
+			});
     }
+
+		CloseErrorMsg() {
+			this.sbErrorMessage = '';
+		}
 
 		// Define las variables usadas para ordenar la tabla que contiene la información de dependencias.
 		/*OrderBy = function(isbProperty, iblReverse){
