@@ -14,10 +14,13 @@ export class PlanesDeEstudioComponent implements OnInit {
   // Inicializando
   // Título de la vista
     sbTitle: any = 'Planes de estudio';
+	// Buscador
 	sbSearchPaceholder: String = 'Buscar planes de estudio';
+	sbSearchHint: String = '';
+	sbSearchRestriction: string = '';
+	// Mensajes
 	sbErrorMessage: String = '';
 	sbMaskMessage: String = '';
-
 	// Parámetro de búsqueda
     sbSearchString: String = '';
 	// Elementos de la miga de pan
@@ -40,13 +43,24 @@ export class PlanesDeEstudioComponent implements OnInit {
 			SONS: this.arAllfaculties
 		});
 
+		// Adicionando mascara
+		this.sbMaskMessage = 'Consultando facultades';
+
 		// Se llama al método del servicio, recibe como entrada lo mismo con lo que resolvió la promesa
 		this.PlanesDeEstudioService.getFaculties().then(
 			iarData=>{
 				this.Utilities.ReplaceArrayItems(this.arAllfaculties, iarData);
 				this.Utilities.ReplaceArrayItems(this.arMenuFaculties, iarData);
+
+				// Removiendo mascara
+				this.sbMaskMessage = '';
 			}
-		).catch(iobError => console.log(iobError));
+		).catch(iobError => {
+			// Removiendo mascara
+			this.sbMaskMessage = '';
+			this.sbErrorMessage = iobError;
+			console.log(iobError)
+		});
 	}
 
 	getBaseCrumb() {
@@ -79,7 +93,7 @@ export class PlanesDeEstudioComponent implements OnInit {
 			// Limpiando la vista de pensum
 			this.Utilities.ReplaceArrayItems(me.arPensum);
 
-			if (!iobfaculty.SONS || (iobfaculty.SONS.length === 0)) {
+			if (!iobfaculty.SONS) {
 				// Cuando no hay mas hijos en el menú
 				let nuId = Number(iobfaculty.ID);
 
@@ -91,15 +105,26 @@ export class PlanesDeEstudioComponent implements OnInit {
 				// Guardando el registro anterior en la miga de pan.
 				me.arBreadCrumb.push(iobfaculty);
 
+				// Adicionando mascara
+				this.sbMaskMessage = 'Consultando planes de estudio';
+
 				this.PlanesDeEstudioService.getCarrers(nuId).then(
 					iobData=>{
-					nuLastCrumb = (me.arBreadCrumb.length - 1);
-					me.arBreadCrumb[nuLastCrumb].SONS = iobData;
+						nuLastCrumb = (me.arBreadCrumb.length - 1);
+						me.arBreadCrumb[nuLastCrumb].SONS = iobData;
 
-					// Cambiando las opciones a desplegar
-					this.Utilities.ReplaceArrayItems(me.arMenuFaculties, iobData);
+						// Cambiando las opciones a desplegar
+						this.Utilities.ReplaceArrayItems(me.arMenuFaculties, iobData);
+
+						// Removiendo mascara
+						this.sbMaskMessage = '';
 					}
-				).catch(iobError=>console.log(iobError));
+				).catch(iobError=> {
+					// Removiendo mascara
+					this.sbMaskMessage = '';
+					this.sbErrorMessage = iobError;
+					console.log(iobError)
+				});
 
 			} else {
 				// Guardando el registro anterior en la miga de pan.
@@ -154,14 +179,20 @@ export class PlanesDeEstudioComponent implements OnInit {
 		let sbSearch = this.sbSearchString.trim();
 
 		if(sbSearch.length < 4 ){
-			console.log('Por favor ingrese mas información.');
+			this.sbSearchRestriction = '* Por favor ingrese mas de 4 caracteres.';
+			return;
 
 		} else {
-			// Removiendo mascara
-			this.sbMaskMessage = 'Consultando planes de estudio';
+			this.sbSearchRestriction = '';
+		}
 
-			this.PlanesDeEstudioService.getCarrersSearch(this.sbSearchString).then(
-				iobData => {
+		// Añadiendo mascara
+		this.sbMaskMessage = 'Consultando carreras';
+
+		this.PlanesDeEstudioService.getCarrersSearch(sbSearch).then(
+			iobData => {
+
+			//if(iobData.length > 0) {
 				// Dejando solo un crumb para cancelar la búsqueda
 				this.Utilities.ReplaceArrayItems(this.arBreadCrumb, [{
 					ID: 'CANCEL_SEARCH',
@@ -174,16 +205,20 @@ export class PlanesDeEstudioComponent implements OnInit {
 					NAME: 'Resultados para "' + this.sbSearchString + '"',
 					SONS: iobData
 				});
-				
-				// Removiendo mascara
-				this.sbMaskMessage = '';
-			}
-			).catch(iobError => {
-				// Removiendo mascara
-				this.sbMaskMessage = '';
-				this.sbErrorMessage = iobError;
-				console.log(iobError);
-			})
+			//}
+			
+			// Removiendo mascara
+			this.sbMaskMessage = '';
 		}
+		).catch(iobError => {
+			// Removiendo mascara
+			this.sbMaskMessage = '';
+			this.sbErrorMessage = iobError;
+			console.log(iobError);
+		});
+	}
+
+	CloseErrorMsg() {
+		this.sbErrorMessage = '';
 	}
 }

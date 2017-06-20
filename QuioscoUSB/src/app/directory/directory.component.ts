@@ -13,7 +13,13 @@ export class DirectoryComponent implements OnInit {
 
 		// Título de la vista
     sbTitle: String = 'Directorio institucional';
+		// Buscador
 		sbSearchPaceholder: String = 'Buscar dependencia';
+		sbSearchHint: String = '';
+		sbSearchRestriction: string = '';
+		// Mensajes
+		sbErrorMessage: String = '';
+		sbMaskMessage: String = '';
     // Parámetro de búsqueda
     sbSearchString: String = '';
 		// Elementos de la miga de pan
@@ -31,6 +37,10 @@ export class DirectoryComponent implements OnInit {
     
 
   ngOnInit() {
+
+		// Adicionando mascara
+		this.sbMaskMessage = 'Consultando unidades';
+
     // Se llama al método del servicio, recibe como entrada lo mismo con lo que resolvió la promesa
     this.DirectoryService.getUnits().then(
       iarData => {
@@ -38,10 +48,16 @@ export class DirectoryComponent implements OnInit {
         this.Utilities.ReplaceArrayItems(this.arAllUnits, iarData);
           // Primer crumb
           this.ShowSons(this.getBaseCrumb());
+
+					// Removiendo mascara
+					this.sbMaskMessage = '';
         }
-      ).catch(
-        sbError => {console.log(sbError)}
-      );
+      ).catch(isbError => {
+				// Removiendo mascara
+				this.sbMaskMessage = '';
+				this.sbErrorMessage = isbError;
+				console.log(isbError);
+			});
   }
 
 	getBaseCrumb() {
@@ -80,7 +96,7 @@ export class DirectoryComponent implements OnInit {
 				// Limpiando la vista de pensum
 				me.Utilities.ReplaceArrayItems(me.arDependencies, null);
 
-				if (!iobUnit.SONS || (iobUnit.SONS.length === 0)) {
+				if (!iobUnit.SONS) {
 					// Cuando no hay mas hijos en el menú
 					nuId = Number(iobUnit.ID);
 
@@ -88,6 +104,9 @@ export class DirectoryComponent implements OnInit {
 						console.log('No es un ID válido');
 						return;
 					}
+
+					// Adicionando mascara
+					this.sbMaskMessage = 'Consultando dependencias';
 
           me.DirectoryService.getDependencies(nuId).then(
             iarData => {
@@ -98,10 +117,16 @@ export class DirectoryComponent implements OnInit {
                 
                 nuLastCrumb = (me.arBreadCrumb.length - 1);
 						    me.arBreadCrumb[nuLastCrumb].DEPENDENCIES = iarData;
+
+								// Removiendo mascara
+								this.sbMaskMessage = '';
               }
-            ).catch(
-              sbError => {console.log(sbError)}
-            );
+            ).catch(isbError => {
+							// Removiendo mascara
+							this.sbMaskMessage = '';
+							this.sbErrorMessage = isbError;
+							console.log(isbError);
+						});
 				} else {
 					// Cambia las opciones a desplegar
 					me.Utilities.ReplaceArrayItems(me.arUnits, iobUnit.SONS);
@@ -166,7 +191,20 @@ export class DirectoryComponent implements OnInit {
     Search(){
       console.log(this.sbSearchString);
 
-      this.DirectoryService.getDependenciesSearch(this.sbSearchString).then(
+			let sbSearch = this.sbSearchString.trim();
+
+			if(sbSearch.length < 4 ){
+				this.sbSearchRestriction = '* Por favor ingrese mas de 4 caracteres.';
+				return;
+
+			} else {
+				this.sbSearchRestriction = '';
+			}
+
+			// Adicionando mascara
+			this.sbMaskMessage = 'Consultando dependencias';
+
+      this.DirectoryService.getDependenciesSearch(sbSearch).then(
         iobData => {
           // Dejando solo un crumb para cancelar la búsqueda
           this.Utilities.ReplaceArrayItems(this.arBreadCrumb, [{
@@ -180,7 +218,19 @@ export class DirectoryComponent implements OnInit {
             DESCRIPTION: 'Resultados para "' + this.sbSearchString + '"',
             SONS: iobData
           });
+
+					// Removiendo mascara
+					this.sbMaskMessage = '';
         }
-      ).catch(iobError => console.log(iobError))
+      ).catch(iobError => {
+				// Removiendo mascara
+				this.sbMaskMessage = '';
+				this.sbErrorMessage = iobError;
+				console.log(iobError);
+		});
     }
+
+		CloseErrorMsg() {
+			this.sbErrorMessage = '';
+	}
 }

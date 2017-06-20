@@ -90,30 +90,66 @@ app-sidebar li{
 
 /***************************************/
 /*************************************SEARCHER******************************************/
+.searcherContainer {
+    margin-bottom: 3rem;
+}
 .searcherBar{
     border: 1px solid #474747;
     width: 80%;
-    margin: 0 10% 0 10%;
     border-radius: 1em;
-    margin-bottom: 3rem;
+    margin: auto;
     background-color: #ffffff;
+    display: flex;
 }
 .searcherBar input{
     width: 80%;
     border: none;
+    border-radius: 1em 0 0 1em;
+    background-color: transparent;
+    padding-left: 1rem;
+    flex: 3;
 }
+.searcherBar input:focus{
+    outline: none;
+    box-shadow: 0em 0em 6pt 1pt #34b0c1;
+}
+
 .searcherBar button{
     border: none;
+    flex: 1;
+    max-width: 5rem;
+    background-color: transparent;
+    background-color: orange;
+    border-radius: 0 1em 1em 0;
+    border-left: 1px solid black;
+}
+
+.searcherBar button:focus{
+    outline: none !important;
+}
+
+.q-search-hint{
+    margin: auto;
+    width: 75%;
+    padding: 0.5rem 1rem;
+    background-color: lightgrey;
+    font-size: 1.2em;
+    border-radius: 0 0 1em 1em;
+}
+.q-search-hint p {
+    margin: 0;
+}
+.q-restriction {
+    color: red;
 }
 /*************************************SEARCHER******************************************/
 app-view-content{
     flex-basis: 70%;
 }
 /***************************************UBICA TU CLASE*************************************/
-.q-search-hint{
-    margin: auto;
-    width: 80%;
-    text-align: center;
+.q-ScheduleItem {
+    color: black;
+    border-bottom: black 1px solid;
 }
 /***************************************UBICA TU CLASE*************************************/
 /****************************************DIRECTORIO*****************************************/

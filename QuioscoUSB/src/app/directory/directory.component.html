@@ -2,11 +2,17 @@
 <app-titlebar [sbTitle]='sbTitle'></app-titlebar>
 
 <!-- Buscador y botón -->
-<div class="searcherBar col-sm-12">
-	<input class="caja" type="text" placeholder="{{sbSearchPaceholder}}" [(ngModel)]="sbSearchString">
-	<button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="Search()">
-	  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-	</button>
+<div class="searcherContainer col-sm-12">
+	<div class="searcherBar">
+		<input class="caja" type="text" placeholder="{{sbSearchPaceholder}}" [(ngModel)]="sbSearchString">
+		<button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="Search()">
+		<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+		</button>
+	</div>
+	<div *ngIf='sbSearchRestriction || sbSearchHint' class="q-search-hint">
+		<p class='q-restriction'>{{sbSearchRestriction}}</p>
+		<p>{{sbSearchHint}}</p>
+	</div>
 </div>
 
 <!-- Breadcrumb y subtitulo -->
@@ -15,12 +21,13 @@
 </div>
 
 <!-- Menú -->
-<div class="q-principal-content" *ngIf="arDependencies.length == 0">
+<div class="q-principal-content" *ngIf="arDependencies.length === 0">
 	<div class="col-sm-3 contentBase" *ngFor='let obUnit of arUnits'>
 		<div class="col-sm-3 treeItem" (click)="ShowSons(obUnit)">
 			{{obUnit.DESCRIPTION}}
 		</div>
 	</div>
+	<div *ngIf="arUnits.length === 0">No hay datos.</div>
 </div>
 
 <!-- Tabla de dependencias -->
@@ -39,3 +46,13 @@
 	</tr>
 </table>
 <!--<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
+
+ <!-- Máscara -->
+ <div class='q-Mask' *ngIf='sbMaskMessage'>{{sbMaskMessage}}</div>
+  <!-- Máscara de error -->
+ <div class='q-Mask' *ngIf='sbErrorMessage'>
+	 <div class="q-errorMsg">{{sbErrorMessage}}</div>
+	 <button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="CloseErrorMsg()">
+		<span class="">Cerrar</span>
+		</button>
+ </div>
