@@ -1,6 +1,19 @@
 <!-- Barra de título -->
 <app-titlebar [sbTitle]='sbTitle'></app-titlebar>
-<div>
-  <p>map works!</p>
+
+<div class='q-horizontal-flex'>
+    <div class="q-vertical">
+        <!-- Imagen base -->
+        <div class='q-map-sized'><img src="assets/img/Map/map.svg"></div>
+        <!-- capas -->
+        <div class='q-map-layer'><img src="assets/img/Map/allGray.svg"></div>
+        <!-- para probar estoy poniendo todas pero realmente va solo una -->
+        <div *ngIf='obSelected' class='q-map-layer'><img src="assets/img/Map/Layers/{{obSelected.IMG}}"></div>
+    </div>
+
+    <div class="q-vertical">
+        <div *ngFor='let obItem of arMapItems, let nuIndex=index' (click)="Select(obItem)">
+            <div>{{obItem.NUMBER}}</div><div>{{obItem.DESCRIPTION}}</div>
+        </div>
+    </div>
 </div>
-<img src="assets/img/USBMap.png">

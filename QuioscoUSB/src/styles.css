@@ -393,3 +393,31 @@ app-news iframe{
  border-color: transparent;
  border-left-color: #059D8E;
 }
+
+/* *********************************************************** MAP ************************************************************ */
+.q-map-sized {
+    position: relative;
+}
+.q-map-layer {
+  /*position: absolute;*/
+  top: 0;
+  left: 0;
+}
+
+.q-vertical {
+    width: 40%;
+    height: 100%;
+    flex: 1;
+}
+
+.q-horizontal-flex {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex: 1;
+}
+app-map{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}

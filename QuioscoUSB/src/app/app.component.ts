@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
       ()=>{
         this.getContent('News');
         console.log(this.content);
-      }, 50000);
+      }, 300000); // 5 minútos
   }
 
   getContent(content){
@@ -27,9 +27,6 @@ export class AppComponent implements OnInit {
   }
 
   gnt(){
-    console.log('sdfsfsfs');
-    console.log(this.timer);
-
     if(this.timer){
       clearInterval(this.timer);
       this.initInterval();

@@ -31,11 +31,4 @@ export class FindCourseService {
 
     return this.ServicesUtilities.SendRequest(sbUrl);
   }
-
-   getBy(isbField, iobValue){
-    let sbUrl = "Index/auditorios/"+iobValue;
-
-    // Petición
-    return this.ServicesUtilities.SendRequest(sbUrl);
-  }
 }
