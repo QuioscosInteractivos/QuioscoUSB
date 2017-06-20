@@ -26,7 +26,7 @@ class Edificiosauditorios extends BModel {
         return $this->ID;
     }
 
-    public function getDESCRIPTION(): string {
+    public function getDESCRIPTION() {
         return $this->DESCRIPTION;
     }
 
