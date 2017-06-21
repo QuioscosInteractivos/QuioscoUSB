@@ -1595,4 +1595,22 @@ class Index_controller extends BServiceController {
 		}]
 }]';
     }
+	
+	public function getMapData($id=false){
+        if($id){
+            $auditorio = Map::getById($id);
+            print json_encode($auditorio->toArray());
+        }else{
+            $Map = Map::getAll();
+
+			$return = new stdClass();
+			$return->MAP = "map.svg";
+			$return->BASE_LAYER = "allGray.svg";
+			$return->LOCATION = "mark.svg";
+			$return->LAYERS = $Map;
+
+            //print json_encode($Map);
+			print json_encode($return);
+        }
+    }
 }

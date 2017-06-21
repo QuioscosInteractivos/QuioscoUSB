@@ -224,6 +224,9 @@ width: 90%;
 }
 /****************************************DIRECTORIO*****************************************/
 /****************************************CARTELERAS*****************************************/
+app-news {
+    overflow: hidden;
+}
 app-news .sppMask{
     position: absolute;
     background-color: red;
@@ -402,11 +405,19 @@ app-news iframe{
   /*position: absolute;*/
   top: 0;
   left: 0;
+  transform: translate3d(0, -100%,0);
+}
+.q-map-selected {
+  /*position: absolute;*/
+  top: 0;
+  left: 0;
+  transform: translate3d(0, -300%,0);
 }
 
 .q-vertical {
     width: 40%;
     height: 100%;
+    margin-left: 1rem;
     flex: 1;
 }
 
@@ -420,4 +431,32 @@ app-map{
     display: flex;
     flex-direction: column;
     height: 100%;
+}
+
+.q-map-item {
+    background-color: white;
+    max-width: 18vw;
+    margin-bottom: 1rem;
+    display: flex;
+}
+
+.q-map-number {
+    border: 1px solid darkgray;
+    flex: 1;
+}
+
+.q-map-description {
+    border: 1px solid darkgray;
+    border-left: 0;
+    flex: 10;
+}
+.q-mapSelection {
+    background-color: orange;
+    color: white;
+}
+
+.q-map-mark {
+    top: 0;
+    left: 0;
+    transform: translate3d(0, -200%, 0);
 }

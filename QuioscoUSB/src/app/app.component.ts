@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
       ()=>{
         this.getContent('News');
         console.log(this.content);
-      }, 300000); // 5 minútos
+      }, 300000); // 6 minútos
   }
 
   getContent(content){

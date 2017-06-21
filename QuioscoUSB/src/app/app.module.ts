@@ -17,6 +17,7 @@ import { PlanesDeEstudioService } from "app/services/planes-de-estudio.service";
 import { Utilities } from "app/utilities";
 import { ServicesUtilities } from "app/services/services-utilities";
 import { TitlebarComponent } from './titlebar/titlebar.component';
+import { MapService } from "app/services/map.service";
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { TitlebarComponent } from './titlebar/titlebar.component';
     FormsModule,
     HttpModule
   ],
-  providers: [FindCourseService,DirectoryService,PlanesDeEstudioService,Utilities,ServicesUtilities],
+  providers: [FindCourseService,DirectoryService,PlanesDeEstudioService,Utilities,ServicesUtilities,MapService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

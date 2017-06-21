@@ -12,16 +12,16 @@ class Activities_controller extends BServiceController {
         }else{ 
             $r =Activity::getById($id)->toArray();
         }
-        Penelope::printJSON($r);
-        //print_r($r);
+        //Penelope::printJSON($r);
+        print_r($r);
     }
     
     public function postIndex() {
         
         $act = Activity::instanciate($_POST);
         $r = $act->create();
-        Penelope::printJSON($r);
-        //print_r($r);
+        //Penelope::printJSON($r);
+        print_r($r);
     }
     
     public function putStatus(){
@@ -30,8 +30,8 @@ class Activities_controller extends BServiceController {
         $act = Activity::getById($id);
         $act->setStatus(1);
         $r=$act->update();
-        Penelope::printJSON($r);
-        //print_r($r);
+        //Penelope::printJSON($r);
+        print_r($r);
         
     }
 }

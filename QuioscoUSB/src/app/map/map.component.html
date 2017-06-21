@@ -4,16 +4,28 @@
 <div class='q-horizontal-flex'>
     <div class="q-vertical">
         <!-- Imagen base -->
-        <div class='q-map-sized'><img src="assets/img/Map/map.svg"></div>
+        <div class='q-map-sized'><img src="assets/img/Map/{{sbMap}}"></div>
         <!-- capas -->
-        <div class='q-map-layer'><img src="assets/img/Map/allGray.svg"></div>
+        <div class='q-map-layer'><img src="assets/img/Map/{{sbBaseLayer}}"></div>
+        <!-- Marcador del quiosco -->
+        <div class='q-map-mark'><img src="assets/img/Map/{{sbLocation}}"></div>
         <!-- para probar estoy poniendo todas pero realmente va solo una -->
-        <div *ngIf='obSelected' class='q-map-layer'><img src="assets/img/Map/Layers/{{obSelected.IMG}}"></div>
+        <div *ngIf='obSelected' class='q-map-selected'><img src="assets/img/Map/Layers/{{obSelected.IMG}}"></div>
     </div>
 
     <div class="q-vertical">
-        <div *ngFor='let obItem of arMapItems, let nuIndex=index' (click)="Select(obItem)">
-            <div>{{obItem.NUMBER}}</div><div>{{obItem.DESCRIPTION}}</div>
+        <div class='q-map-item' [ngClass]="{'q-mapSelection': (obSelected && obItem.NUMBER === obSelected.NUMBER)}" *ngFor='let obItem of arMapItems, let nuIndex=index' (click)="Select(obItem)">
+            <div class='q-map-number'>{{obItem.NUMBER}}</div><div class='q-map-description'>{{obItem.DESCRIPTION}}</div>
         </div>
     </div>
 </div>
+
+ <!-- Máscara -->
+ <div class='q-Mask' *ngIf='sbMaskMessage'>{{sbMaskMessage}}</div>
+  <!-- Máscara de error -->
+ <div class='q-Mask' *ngIf='sbErrorMessage'>
+	 <div class="q-errorMsg">{{sbErrorMessage}}</div>
+	 <button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="CloseErrorMsg()">
+		<span class="">Cerrar</span>
+		</button>
+ </div>

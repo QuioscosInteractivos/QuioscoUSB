@@ -23,8 +23,8 @@ class Penelope {
     
     public static function printJSON($array) {
         
-        print(Penelope::arrayToJSON($array));
-        //print($array);
+        //print(Penelope::arrayToJSON($array));
+        print($array);
 
     }
 
