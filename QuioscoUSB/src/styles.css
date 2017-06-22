@@ -475,6 +475,7 @@ app-map{
     left: 0;
     transform: translate3d(0, -200%, 0);
 }
+<<<<<<< HEAD
 /*****************************************UBICA TU CLASE******************************/
 .q-buildings{
     height: 25%;
@@ -483,4 +484,25 @@ app-map{
     border: 1px solid #059D8E;
     background-color: rgba(5, 157, 142, 0.04);
     border-radius: 5px;
+=======
+
+/******************************* HOME *********************************/
+.q-main-title {
+    font-size: 5rem;
+    color: blue;;
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.q-subtitle {
+    font-size: 3rem;
+    color: darkblue;;
+    text-align: center;
+}
+
+.q-welcome-text {
+    font-size: 2rem;
+    color: black;
+    margin: 10rem;
+>>>>>>> d486d6b0133daa4bb8f26d8ad21bd61e31c3e13c
 }
