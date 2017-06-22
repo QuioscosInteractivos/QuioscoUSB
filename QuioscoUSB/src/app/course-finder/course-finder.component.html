@@ -28,8 +28,10 @@
 <div class="q-faculties" *ngIf="arBuildingSchedule.length === 0 && arCourseSchedule.length === 0">
 	<div class='col-sm-3 contentBase' *ngFor='let obOption of arMenuOptions'>
 		<div class="col-sm-3 treeItem" (click)="ShowSons(obOption)">
+			<div class="q-menu-option">
 			<p>{{obOption.DESCRIPTION}}</p>
 			<p *ngIf='obOption.TEACHER'>{{obOption.TEACHER}}</p>
+			</div>
 		</div>
 	</div>
 	<div *ngIf="arMenuOptions.length === 0">No hay datos.</div>
@@ -37,46 +39,48 @@
 
 
 <!-- Horario de auditorios -->
-
-<div class="contentBase" *ngFor='let obClassRoom of arBuildingSchedule'>
-	<div class="col-sm-3 q-semester treeItem">
-		<div data-toggle="collapse" data-target=".courses">
-			<div>
-				{{obClassRoom.DESCRIPTION}}
+<div class="q-rooms-container">
+	<div class="contentBase" *ngFor='let obClassRoom of arBuildingSchedule'>
+		<div class="col-sm-3 q-official-course q-semester treeItem">
+			<div data-toggle="collapse" data-target=".courses">
+				<div class="q-room-name">
+					{{obClassRoom.DESCRIPTION}}
+				</div>
 			</div>
-		</div>
 
-		<!-- Materias -->
-		<div class="collapse" class="courses">
-			<div class='q-ScheduleItem' *ngFor="let obClass of obClassRoom.SCHEDULES">
-				<div>{{obClass.DESCRIPTION}}</div>
-				<div>{{obClass.STARTS_AT}} - {{obClass.ENDS_AT}}</div>
-				<div>{{obClass.TEACHER}}</div>
+			<!-- Materias -->
+			<div class="collapse" class="courses">
+				<div class='q-ScheduleItem' *ngFor="let obClass of obClassRoom.SCHEDULES">
+					<div class="q-course">{{obClass.DESCRIPTION}}</div>
+					<div class="q-date-course">{{obClass.STARTS_AT}} - {{obClass.ENDS_AT}}</div>
+					<div class="q-teacher-course">{{obClass.TEACHER}}</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
 
-
 <!-- Horario de una materia -->
-<div class="contentBase" *ngFor='let obDay of arCourseSchedule'>
-	<div class="col-sm-3 q-semester treeItem">
+<div class="q-rooms-container">
+	<div class="contentBase" *ngFor='let obDay of arCourseSchedule'>
+		<div class="col-sm-3 q-official-course q-semester treeItem">
 
-		<div data-toggle="collapse" data-target=".courses">
-			<div>
-				{{obDay.DAY}}
+			<div data-toggle="collapse" data-target=".courses">
+				<div>
+					{{obDay.DAY}}
+				</div>
 			</div>
-		</div>
-		<!-- Materias -->
-		<div class="collapse" class="courses">
-			<div class='q-ScheduleItem' *ngFor="let obSchedule of obDay.SCHEDULES">
-				<div>{{obSchedule.STARTS_AT}} - {{obSchedule.ENDS_AT}}</div>
-				<div>{{obSchedule.BUILDING}}</div>
-				<div>{{obSchedule.CLASSROOM}}</div>
+			<!-- Materias -->
+			<div class="collapse" class="courses">
+				<div class='q-ScheduleItem' *ngFor="let obSchedule of obDay.SCHEDULES">
+					<div class="q-course">{{obSchedule.STARTS_AT}} - {{obSchedule.ENDS_AT}}</div>
+					<div class="q-date-course">{{obSchedule.BUILDING}}</div>
+					<div class="q-teacher-course">{{obSchedule.CLASSROOM}}</div>
+				</div>
 			</div>
-		</div>
 
+		</div>
 	</div>
 </div>
 
@@ -84,8 +88,11 @@
  <div class='q-Mask' *ngIf='sbMaskMessage'>{{sbMaskMessage}}</div>
   <!-- Máscara de error -->
  <div class='q-Mask' *ngIf='sbErrorMessage'>
-	 <div class="q-errorMsg">{{sbErrorMessage}}</div>
-	 <button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="CloseErrorMsg()">
-		<span class="">Cerrar</span>
+	 <div class="q-error-container">
+		 <div class="q-error-title">Error</div>
+		<div class="q-errorMsg">{{sbErrorMessage}}</div>
+		<button type="button" class="smallBtn btn btn-default btn-sm q-error-btn" aria-label="Left Align" (click)="CloseErrorMsg()">
+			<span class="">Cerrar</span>
 		</button>
+	</div>
  </div>

@@ -24,7 +24,7 @@
 <div class="q-principal-content" *ngIf="arDependencies.length === 0">
 	<div class="col-sm-3 contentBase" *ngFor='let obUnit of arUnits'>
 		<div class="col-sm-3 treeItem" (click)="ShowSons(obUnit)">
-			{{obUnit.DESCRIPTION}}
+			<div class="q-menu-option">{{obUnit.DESCRIPTION}}</div>
 		</div>
 	</div>
 	<div *ngIf="arUnits.length === 0">No hay datos.</div>
@@ -39,7 +39,7 @@
 	</tr>
 	
   <!-- Información de cada dependencia -->
-	<tr *ngFor="let obDependency of arDependencies">
+	<tr *ngFor="let obDependency of arDependencies" class="q-directory-row">
 		<td class="q-directory-result col-sm-3">{{obDependency.DESCRIPTION}}</td>
 		<td class="q-directory-result col-sm-3">{{obDependency.PHONE}}</td>
 		<td class="q-directory-result col-sm-3">{{obDependency.EMAIL}}</td>
@@ -51,8 +51,11 @@
  <div class='q-Mask' *ngIf='sbMaskMessage'>{{sbMaskMessage}}</div>
   <!-- Máscara de error -->
  <div class='q-Mask' *ngIf='sbErrorMessage'>
-	 <div class="q-errorMsg">{{sbErrorMessage}}</div>
-	 <button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="CloseErrorMsg()">
-		<span class="">Cerrar</span>
+	<div class="q-error-container">
+		<div class="q-error-title">Error</div>
+		<div class="q-errorMsg">{{sbErrorMessage}}</div>
+		<button type="button" class="smallBtn btn btn-default btn-sm q-error-btn" aria-label="Left Align" (click)="CloseErrorMsg()">
+			<span class="">Cerrar</span>
 		</button>
+	</div>
  </div>

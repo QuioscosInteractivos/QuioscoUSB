@@ -4,6 +4,9 @@ app-root{
     flex-flow: row nowrap;
     height: 100vh;
 }
+p{
+    margin: 0;
+}
 app-view-content{
     flex-basis: 80% !important;
     background-image: url(assets/img/fondo.svg);
@@ -26,29 +29,57 @@ app-view-content{
     color: white;
     font-size: 2rem;
 }
-.q-errorMsg {
-    background-color: white;
+.q-error-container{
+    height: 25%;
+    width: 25%;
+    text-align: center;
+    background-color: #DEDEDE;
+    border-radius: 5px;
+}
+.q-error-title{
     color: red;
+    margin: 1rem;
+}
+.q-errorMsg {
+    color: #313732;
+    font-size: 0.9em;
+    margin: 1rem;
+}
+.q-error-btn{
+    background-color: transparent;
+    border:none;
+    color:#059D8E;
+    width: 100%;
+    margin-top: 2rem;
+    font-size: 0.8em;
+    border-top: 1px solid;
+    height: 5rem;
 }
 /*****************************************SIDEBAR*****************************/
 app-sidebar{
     flex-basis: 20%;
-     background-color: #eb7e15;
+     background-color: #DEDEDE;
      border-right: 1px solid #eb7e15;
+}
+.q-side{
+    height: 69vh;
 }
 app-sidebar li{
     width: 100%;
     padding-left: 2rem;
     padding: 9% 2rem 9% 0;
-    color: #ffffff;
+    color: #313732;
     font-weight: bold;
     text-align: center;
-    border-bottom:1px solid #ffffff;
+    border-top: 1px solid #059d8e;
     
 }
 .nav>li{
     display: inline-flex;
     padding-left: 1rem;
+    height: 25%;
+    display: table;
+    
 }
 .logo img{
     width: 100%;
@@ -57,14 +88,20 @@ app-sidebar li{
     margin:0 25% 0 25%;
 }
 .q-tabSelected {
-    background-color: #059D8E;
+    background-color: #eb7e15;
+    color:#ffffff;
+    box-shadow: -7px 8px 48px 1px rgba(0,0,0,0.48);
 }
 .q-icon{
-    width: 20%;
+    width: 30%;
+    display: table-cell;
+    vertical-align: middle;
 }
 .q-description{
     width: 80%;
     padding: 1rem;
+    display: table-cell;
+    vertical-align: middle;
 }
 /*****************************************SIDEBAR*****************************/
 /*********************************TOPBAR**********************************/
@@ -150,12 +187,6 @@ app-sidebar li{
 app-view-content{
     flex-basis: 70%;
 }
-/***************************************UBICA TU CLASE*************************************/
-.q-ScheduleItem {
-    color: black;
-    border-bottom: black 1px solid;
-}
-/***************************************UBICA TU CLASE*************************************/
 /****************************************DIRECTORIO*****************************************/
 .q-principal-content{
     border: 1px solid #059D8E;
@@ -180,6 +211,11 @@ app-view-content{
     border-radius: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     height: 5rem;
+    display: table;
+}
+.q-menu-option{
+    display: table-cell;
+    vertical-align: middle;
 }
 /*.treeItem div{
       display: inline-block;
@@ -191,25 +227,25 @@ app-view-content{
     margin: auto;
 }
 .q-dependency{
-    background-color: #dedede;
+    background-color: #313732;
     text-align: center;
-    color: #474747;
+    color: #ffffff;
     font-weight: 800;
     height: 3rem;
     border: 1px solid #eb7e15;
 }
 .q-phone{
-    background-color: #dedede;
+    background-color: #313732;
     text-align: center;
-    color: #474747;
+    color: #ffffff;
     font-weight: 800;
     height: 3rem;
     border: 1px solid #eb7e15;
 }
 .q-email{
-    background-color: #dedede;
+    background-color: #313732;
     text-align: center;
-    color: #474747;
+    color: #ffffff;
     font-weight: 800;
     height: 3rem;   
     border: 1px solid #eb7e15;
@@ -219,6 +255,13 @@ app-view-content{
     background-color:#ffffff;
     text-align: center;
     font-weight: bold;
+    height: 4rem;
+}
+.q-directory-result:nth-child(odd) {
+    background-color:rgba(235, 126, 21, 0.13);
+}
+.q-directory-result:nth-child(even) {
+    background-color:#ffffff;
 }
 .q-icon-directory{
     width: 10%;
@@ -332,8 +375,8 @@ app-news iframe{
 }
 .q-courses-types{
     display: inline-flex;
-    width: 90%;
-    margin-left: 1.5rem;
+    width: 80%;
+    margin-left: 2.5rem;
 }
 .courses{
     
@@ -449,21 +492,32 @@ app-map{
 }
 
 .q-map-item {
-    background-color: white;
-    max-width: 18vw;
+    background-color: #DEDEDE;
+    max-width: 19vw;
     margin-bottom: 1rem;
     display: flex;
+    height: 3rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .q-map-number {
-    border: 1px solid darkgray;
+    border: 1px solid #059D8E;
     flex: 1;
+    height: 3rem;
+    padding-top: 0.5rem;
+    color: #059D8E;
+    font-weight: 900;
+    text-align: center;
 }
 
 .q-map-description {
-    border: 1px solid darkgray;
+    border: 1px solid #059D8E;
     border-left: 0;
     flex: 10;
+    height: 3rem;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+
 }
 .q-mapSelection {
     background-color: orange;
@@ -476,6 +530,10 @@ app-map{
     transform: translate3d(0, -200%, 0);
 }
 /*****************************************UBICA TU CLASE******************************/
+.q-rooms-container{
+    width: 90%;
+    margin: auto;
+}
 .q-buildings{
     height: 25%;
     margin: 20% 5% 5% 5%;
@@ -484,18 +542,47 @@ app-map{
     background-color: rgba(5, 157, 142, 0.04);
     border-radius: 5px;
 }
+.q-ScheduleItem {
+    color: black;
+    border-bottom: #059D8E 1px solid;
+}
+.q-room-name{
+    height: 3rem;
+    margin-top: 1rem;
+}
+.q-course{
+    color: #059d8e;
+    font-weight: 900;
+}
+.q-date-course{
+  color: #313732;
+  font-size: 0.9em;
+}
+.q-teacher-course{
+  color: #313732;
+  font-size: 0.8em;
+}
+.q-official-course{
+        background-color: #313732;
+}
+/***************************************UBICA TU CLASE*************************************/
 
 /******************************* HOME *********************************/
+.q-home{
+    height: auto;
+    margin-top: 20%;
+}
 .q-main-title {
     font-size: 5rem;
-    color: blue;;
+    color: #059D8E;
     text-align: center;
     margin-top: 5rem;
+    font-weight: bold;
 }
 
 .q-subtitle {
     font-size: 3rem;
-    color: darkblue;;
+    color: #059D8E;
     text-align: center;
 }
 
