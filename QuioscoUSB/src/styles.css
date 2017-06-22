@@ -460,3 +460,23 @@ app-map{
     left: 0;
     transform: translate3d(0, -200%, 0);
 }
+
+/******************************* HOME *********************************/
+.q-main-title {
+    font-size: 5rem;
+    color: blue;;
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.q-subtitle {
+    font-size: 3rem;
+    color: darkblue;;
+    text-align: center;
+}
+
+.q-welcome-text {
+    font-size: 2rem;
+    color: black;
+    margin: 10rem;
+}

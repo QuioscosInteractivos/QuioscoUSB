@@ -18,6 +18,7 @@ import { Utilities } from "app/utilities";
 import { ServicesUtilities } from "app/services/services-utilities";
 import { TitlebarComponent } from './titlebar/titlebar.component';
 import { MapService } from "app/services/map.service";
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MapService } from "app/services/map.service";
     DirectoryComponent,
     MapComponent,
     CourseFinderComponent,
-    TitlebarComponent
+    TitlebarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

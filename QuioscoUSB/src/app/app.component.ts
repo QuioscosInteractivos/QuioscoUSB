@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   timer: any;
 
   ngOnInit() {
+    this.getContent('News');
     this.initInterval();
   }
 
@@ -18,8 +19,7 @@ export class AppComponent implements OnInit {
     this.timer = setInterval(
       ()=>{
         this.getContent('News');
-        console.log(this.content);
-      }, 300000); // 6 minútos
+      }, 150000); // < 3 minútos
   }
 
   getContent(content){
