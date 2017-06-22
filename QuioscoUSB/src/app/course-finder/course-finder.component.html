@@ -24,14 +24,6 @@
 	<div class="q-breadCrumbs-element" *ngFor='let obCrumb of arBreadCrumb, let nuIndex=index' (click)="GoTo(nuIndex, obCrumb)">{{obCrumb.DESCRIPTION}}</div>
 </div>
 
-<<<<<<< HEAD
-<!-- Menú -->
-<div class="q-buildings">
-<div class="col-sm-3" *ngFor='let obOption of arMenuOptions'>
-	<div class="col-sm-3 treeItem" (click)="ShowSons(obOption)">
-		<p>{{obOption.DESCRIPTION}}</p>
-		<p>{{obOption.TEACHER}}</p>
-=======
 <!-- Menú (edificios o materias buscadas) -->
 <div class="q-faculties" *ngIf="arBuildingSchedule.length === 0 && arCourseSchedule.length === 0">
 	<div class='col-sm-3 contentBase' *ngFor='let obOption of arMenuOptions'>
@@ -39,11 +31,10 @@
 			<p>{{obOption.DESCRIPTION}}</p>
 			<p *ngIf='obOption.TEACHER'>{{obOption.TEACHER}}</p>
 		</div>
->>>>>>> d486d6b0133daa4bb8f26d8ad21bd61e31c3e13c
 	</div>
 	<div *ngIf="arMenuOptions.length === 0">No hay datos.</div>
 </div>
-</div>
+
 
 <!-- Horario de auditorios -->
 
