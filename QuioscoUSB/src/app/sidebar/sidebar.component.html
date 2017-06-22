@@ -4,7 +4,7 @@
 	<a class="logo" (click)="emitChange('News')">
 		<img src="assets/img/USBlogo.svg">
 	</a>
-	<ul class="nav navbar-nav">
+	<ul class="nav navbar-nav q-side">
 		<li [ngClass]="{'q-tabSelected': blCourseFinder}" (click)="emitChange('CourseFinder')"><div class="q-icon"><img src="assets/img/notebook.svg"></div><div class="q-description">Ubica tu clase</div></li>
 		<li [ngClass]="{'q-tabSelected': blPensumSelected}" (click)="emitChange('Pensum')"><div class="q-icon"><img src="assets/img/diagram.svg"></div><div class="q-description">Planes de estudio</div></li>
 		<li [ngClass]="{'q-tabSelected': blDirectory}" (click)="emitChange('Directory')"><div class="q-icon"><img src="assets/img/phone.svg"></div><div class="q-description">Directorio institucional</div></li>

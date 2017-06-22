@@ -25,14 +25,17 @@
 </div>
 
 <!-- Menú -->
-<div *ngFor='let obOption of arMenuOptions'>
+<div class="q-buildings">
+<div class="col-sm-3" *ngFor='let obOption of arMenuOptions'>
 	<div class="col-sm-3 treeItem" (click)="ShowSons(obOption)">
 		<p>{{obOption.DESCRIPTION}}</p>
 		<p>{{obOption.TEACHER}}</p>
 	</div>
 </div>
+</div>
 
 <!-- Horario de auditorios -->
+
 <div class="contentBase" *ngFor='let obClassRoom of arBuildingSchedule'>
 	<div class="col-sm-3 q-semester treeItem">
 		<div data-toggle="collapse" data-target=".courses">
@@ -51,6 +54,8 @@
 		</div>
 	</div>
 </div>
+
+
 
 <!-- Horario de una materia -->
 <div class="contentBase" *ngFor='let obDay of arCourseSchedule'>
