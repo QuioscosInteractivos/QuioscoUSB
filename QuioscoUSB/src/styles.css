@@ -346,7 +346,11 @@ app-news iframe{
     width: 30%;
     margin: 1rem 1.5rem;
     padding: 0;
-    height: auto;
+    height: auto;  
+}
+ 
+.q-semester:nth-child(4n){
+    clear: left;
 }
 .q-subject{
     display: inline-flex;
@@ -354,6 +358,8 @@ app-news iframe{
     background-color: #ffffff;
     border: 1px solid #f6f6f6;
     vertical-align: top;
+    border-left: 1px solid #059D8E;
+    border-right:  1px solid #059D8E;
 }
 .courseTypeSize{
     width: 2%;    
@@ -398,8 +404,15 @@ app-news iframe{
     margin-left: 2.5rem;
 }
 .courses{    
-    height: 46rem;
-    background-color: #ffffff;
+   /* height: 46rem;*/
+   height: 35rem;
+    background-color:transparent;
+}
+
+.col-md-3.q-semester.treeItem{
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
 }
 .q-type{
     display: inline-flex;
@@ -411,6 +424,10 @@ app-news iframe{
 .q-type-description{
     padding: 0.5rem;
     font-family: 'Lato', sans-serif;
+}
+.q-subject:last-child{
+    border-bottom: 1px solid #059D8E;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /****************************MIGA DE PAN****************************/
@@ -566,12 +583,30 @@ app-map{
     border-radius: 5px;
 }
 .q-ScheduleItem {
+    border-left: #059D8E 1px solid;
+    border-right: #059D8E 1px solid;
+    border-bottom: 1px solid #DEDEDE;
+    background-color: #ffffff;
+}
+.q-ScheduleItem:last-child {
     border-bottom: #059D8E 1px solid;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .q-room-name{
     height: 3rem;
-    margin-top: 1rem;
+   /* margin-top: 1rem;*/
     font-family: 'Lato', sans-serif;
+}
+.q-room-cont-name{
+    padding-top: 1rem;
+    width: 100%;
+    background-color: #313732;
+}
+.col-sm-3.q-official-course.q-semester.treeItem {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    height: 100%;
 }
 .q-first-level-course{
     color: #059d8e;
