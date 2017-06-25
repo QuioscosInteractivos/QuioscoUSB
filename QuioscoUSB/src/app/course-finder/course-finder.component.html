@@ -51,9 +51,9 @@
 			<!-- Materias -->
 			<div class="collapse" class="courses">
 				<div class='q-ScheduleItem' *ngFor="let obClass of obClassRoom.SCHEDULES">
-					<div class="q-course">{{obClass.DESCRIPTION}}</div>
-					<div class="q-date-course">{{obClass.STARTS_AT}} - {{obClass.ENDS_AT}}</div>
-					<div class="q-teacher-course">{{obClass.TEACHER}}</div>
+					<div class="q-first-level-course">{{obClass.DESCRIPTION}}</div>
+					<div class="q-second-level-course">{{obClass.STARTS_AT}} - {{obClass.ENDS_AT}}</div>
+					<div class="q-third-level-course">{{obClass.TEACHER}}</div>
 				</div>
 			</div>
 		</div>
@@ -74,9 +74,9 @@
 			<!-- Materias -->
 			<div class="collapse" class="courses">
 				<div class='q-ScheduleItem' *ngFor="let obSchedule of obDay.SCHEDULES">
-					<div class="q-course">{{obSchedule.STARTS_AT}} - {{obSchedule.ENDS_AT}}</div>
-					<div class="q-date-course">{{obSchedule.BUILDING}}</div>
-					<div class="q-teacher-course">{{obSchedule.CLASSROOM}}</div>
+					<div class="q-first-level-course">{{obSchedule.STARTS_AT}} - {{obSchedule.ENDS_AT}}</div>
+					<div class="q-second-level-course">{{obSchedule.BUILDING}}</div>
+					<div class="q-third-level-course">{{obSchedule.CLASSROOM}}</div>
 				</div>
 			</div>
 

@@ -6,13 +6,14 @@ app-root{
     display: flex;
     flex-flow: row nowrap;
     height: 100vh;
+     overflow:hidden;
 }
 p{
     margin: 0;
 }
 app-view-content{
     flex-basis: 80% !important;
-    background-image: url(assets/img/fondo.svg);
+    background-image: url(assets/img/fondo.png);
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -40,7 +41,7 @@ app-view-content{
     border-radius: 5px;
 }
 .q-error-title{
-    color: red;
+    color: #E84B30;
     margin: 1rem;
 }
 .q-errorMsg {
@@ -58,6 +59,11 @@ app-view-content{
     border-top: 1px solid;
     height: 5rem;
 }
+.q-date{
+    font-size: 0.8em;
+    color: #059D8E;
+    margin-top: 0.4rem; 
+}
 /*****************************************SIDEBAR*****************************/
 app-sidebar{
     flex-basis: 20%;
@@ -68,6 +74,7 @@ app-sidebar{
     height: 69vh;
 }
 app-sidebar li{
+  font-family: 'Lato', sans-serif;
     width: 100%;
     padding-left: 2rem;
     padding: 9% 2rem 9% 0;
@@ -118,7 +125,9 @@ app-sidebar li{
     height: 5rem;
     border-bottom: 2px solid #eb7e15;
     font-weight: bold;
-    font-weight: 900;
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2em;
+    padding-bottom: 1.5rem;
 }
 .titleDiv{    
     margin: auto;
@@ -152,6 +161,7 @@ app-sidebar li{
     background-color: transparent;
     padding-left: 1rem;
     flex: 3;
+    font-family: 'Roboto', sans-serif;
 }
 .searcherBar input:focus{
     outline: none;
@@ -176,15 +186,17 @@ app-sidebar li{
     margin: auto;
     width: 75%;
     padding: 0.5rem 1rem;
-    background-color: lightgrey;
+    background-color: #DEDEDE;
     font-size: 1.2em;
     border-radius: 0 0 1em 1em;
+    font-family: 'Roboto', sans-serif;
 }
 .q-search-hint p {
     margin: 0;
 }
 .q-restriction {
-    color: red;
+    color: #E84B30;
+    font-family: 'Roboto', sans-serif;
 }
 /*************************************SEARCHER******************************************/
 app-view-content{
@@ -215,6 +227,7 @@ app-view-content{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     height: 5rem;
     display: table;
+    font-family: 'Lato', sans-serif;
 }
 .q-menu-option{
     display: table-cell;
@@ -259,6 +272,7 @@ app-view-content{
     text-align: center;
     font-weight: bold;
     height: 4rem;
+    font-family: 'Roboto', sans-serif;
 }
 .q-directory-result:nth-child(odd) {
     background-color:rgba(235, 126, 21, 0.13);
@@ -277,6 +291,7 @@ app-view-content{
 }
 .q-table-description{
 width: 90%;
+font-family: 'Lato', sans-serif;
 }
 /****************************************DIRECTORIO*****************************************/
 /****************************************CARTELERAS*****************************************/
@@ -285,7 +300,7 @@ app-news {
 }
 app-news .sppMask{
     position: absolute;
-    background-color: red;
+    background-color: #E84B30;
     opacity: 0;
     width: 100%;
     height: 100%;
@@ -312,19 +327,19 @@ app-news iframe{
 }
 /* Colores de los tipos de clases (pensum) */
 .red {
-	background-color: red;
+	background-color: #E84B30;
 }
 
 .blue {
-	background-color: blue;
+	background-color: #64CCFF;
 }
 
 .green {
-	background-color: green;
+	background-color: #49E83E;
 }
 
 .yellow {
-	background-color: yellow;
+	background-color: #FFD432;
 }
 .q-semesters-content{
     width: 90%;
@@ -353,11 +368,13 @@ app-news iframe{
     padding: 1rem;
     border-left: 1px solid #f6f6f6;
     border-right: 1px solid #f6f6f6;
+    font-family: 'Roboto', sans-serif;
 }
 .q-credits{
-    color:gray;
+    color:#313732;
     font-size: 1.1rem;
     padding: 0.5rem;
+    font-family: 'Roboto', sans-serif;
 }
 .q-semester-tittle{
     display: inline-flex;
@@ -370,19 +387,20 @@ app-news iframe{
     width: 90%;
     text-align: center;
     margin: auto;
+    font-family: 'Lato', sans-serif;    
 }
 .q-semester-credits{
     color:#ffffff;
     font-size: 1.1rem;
     padding: 0.5rem;
-}
+    font-family: 'Lato', sans-serif; 
+    }
 .q-courses-types{
     display: inline-flex;
     width: 80%;
     margin-left: 2.5rem;
 }
-.courses{
-    
+.courses{    
     height: 46rem;
     background-color: #ffffff;
 }
@@ -395,6 +413,7 @@ app-news iframe{
 }
 .q-type-description{
     padding: 0.5rem;
+    font-family: 'Lato', sans-serif;
 }
 
 /****************************MIGA DE PAN****************************/
@@ -414,6 +433,7 @@ app-news iframe{
  padding: 0 10px 0 5px;
  text-align: center;
  margin-right: 23px;
+ font-family: 'Roboto', sans-serif;
 }
 .q-breadCrumbs-element:first-child{
  border-top-left-radius: 5px;
@@ -428,6 +448,7 @@ app-news iframe{
  border-bottom: 1px solid #15a395;
  font-weight: 900;
  font-size: 1.1em;
+ font-family: 'Lato', sans-serif;
  }
 .q-breadCrumbs-element:first-child:before{
  border: none;
@@ -501,6 +522,7 @@ app-map{
     display: flex;
     height: 3rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: 'Roboto', sans-serif;
 }
 
 .q-map-number {
@@ -525,6 +547,7 @@ app-map{
 .q-mapSelection {
     background-color: orange;
     color: white;
+    font-weight: bold;
 }
 
 .q-map-mark {
@@ -546,24 +569,27 @@ app-map{
     border-radius: 5px;
 }
 .q-ScheduleItem {
-    color: black;
     border-bottom: #059D8E 1px solid;
 }
 .q-room-name{
     height: 3rem;
     margin-top: 1rem;
+    font-family: 'Lato', sans-serif;
 }
-.q-course{
+.q-first-level-course{
     color: #059d8e;
     font-weight: 900;
+    font-family: 'Roboto', sans-serif;
 }
-.q-date-course{
+.q-second-level-course{
   color: #313732;
   font-size: 0.9em;
+  font-family: 'Roboto', sans-serif;
 }
-.q-teacher-course{
+.q-third-level-course{
   color: #313732;
   font-size: 0.8em;
+  font-family: 'Roboto', sans-serif;
 }
 .q-official-course{
         background-color: #313732;
@@ -575,7 +601,9 @@ app-map{
     height: auto;
     margin-top: 20%;
 }
+
 .q-main-title {
+   font-family: 'Lato', sans-serif;
     font-size: 5rem;
     color: #059D8E;
     text-align: center;
@@ -584,13 +612,15 @@ app-map{
 }
 
 .q-subtitle {
+     font-family: 'Lato', sans-serif;
     font-size: 3rem;
     color: #059D8E;
     text-align: center;
 }
 
 .q-welcome-text {
+  font-family: 'Roboto', sans-serif;
     font-size: 2rem;
-    color: black;
+    color: #313732;
     margin: 10rem;
 }
