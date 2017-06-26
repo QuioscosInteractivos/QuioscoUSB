@@ -7,7 +7,7 @@ export class ServicesUtilities {
 
     constructor(private Http: Http) { }
 
-    sbBaseURL: String = "http://localhost/QuioscoUSB/services/";
+    sbBaseURL: String = "http://localhost/quioscos/services/";
 
     SendRequest(isbUrl){
         let sbUrl = this.sbBaseURL+isbUrl;

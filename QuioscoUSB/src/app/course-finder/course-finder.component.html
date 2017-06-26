@@ -66,13 +66,13 @@
 	<div class="contentBase" *ngFor='let obDay of arCourseSchedule'>
 		<div class="col-sm-3 q-official-course q-semester treeItem">
 
-			<div data-toggle="collapse" data-target=".courses">
-				<div>
+			<div class="q-room-cont-name">
+				<div class="q-room-name">
 					{{obDay.DAY}}
 				</div>
 			</div>
 			<!-- Materias -->
-			<div class="collapse" class="courses">
+			<div class="courses">
 				<div class='q-ScheduleItem' *ngFor="let obSchedule of obDay.SCHEDULES">
 					<div class="q-first-level-course">{{obSchedule.STARTS_AT}} - {{obSchedule.ENDS_AT}}</div>
 					<div class="q-second-level-course">{{obSchedule.BUILDING}}</div>
