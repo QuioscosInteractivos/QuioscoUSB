@@ -13,17 +13,11 @@ export class TitlebarComponent implements OnInit {
   @Input()
   sbTitle: string;
   dtHour:any;
+  timer:any;
   
   ngOnInit() {
-    /*var today = new Date();
-    var h = today.getHours();
-    var m = today.getMinutes();
-    var s = today.getSeconds();
-    m = this.checkTime(m);
-    s = this.checkTime(s);
-    this.dtHour= h + ":" + m + ":" + s;
-    var t = setTimeout(this.ngOnInit, 500);*/
-    this.CalcTime();
+     this.CalcTime();
+     this.CalcTimeLoop();
   }
 
   CalcTime(){
@@ -36,33 +30,47 @@ export class TitlebarComponent implements OnInit {
 
     nuMinutes = me.checkTime(nuMinutes);
 
+    nuSeconds = me.checkTime(nuSeconds);
+
     if(nuHour>12){
       nuHour = nuHour-12;
       sbTime= "p.m";
     }
-    me.dtHour= nuHour + ":" + nuMinutes +" "+sbTime+"    "+ me.FormatDate(today);
-    let t = setTimeout(me.CalcTime, 500);
-  }
+    me.dtHour= nuHour + ":" + nuMinutes +":"+nuSeconds+" "+sbTime+"    "+ me.FormatDate(today);    
+  } 
 
- 
-checkTime(i) {
+  CalcTimeLoop(){
+    this.timer = setInterval(
+      ()=>{
+       this.CalcTime();
+      }, 500); 
+  } 
+
+  checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
-}
-FormatDate(date) {
-  var arMonthNames = [
-    "Ene", "Feb", "Mar",
-    "Apr", "May", "Jun", "Jul",
-    "Ago", "Sep", "Oct",
-    "Nov", "Dic"
-  ];
+  }
 
-  var dtDay = date.getDate();
-  var dtMonthIndex = date.getMonth();
-  var dtYear = date.getFullYear();
-  var dtMonth = arMonthNames[dtMonthIndex];
+  FormatDate(date) {
+    var arMonthNames = [
+      "Ene", "Feb", "Mar",
+      "Apr", "May", "Jun", "Jul",
+      "Ago", "Sep", "Oct",
+      "Nov", "Dic"
+    ];
+    var dtDay = date.getDate();
+    var dtMonthIndex = date.getMonth();
+    var dtYear = date.getFullYear();
+    var dtMonth = arMonthNames[dtMonthIndex];
 
-  return dtDay + '/' + dtMonth + '/' + dtYear;
-}
+    return dtDay + '/' + dtMonth + '/' + dtYear;
+  }
+
+  gnt(){
+    if(this.timer){
+      clearInterval(this.timer);
+      this.CalcTimeLoop();
+    }
+  }
 
 }

@@ -45,12 +45,13 @@
 	
 
 	<div class="q-semesters-content">
-
+		
 	<!-- Semestres -->
-		<div *ngIf="obCarrer.SEMESTERS.length === 0">No hay datos.</div>
-		<div class="contentBase" *ngFor='let obSemester of obCarrer.SEMESTERS'>
-			<div class="col-md-3 q-semester treeItem">
-				<div data-toggle="collapse" data-target=".courses" class="q-semester-tittle">
+		<div *ngIf="obCarrer.SEMESTERS.length === 0">No hay datos.</div>		
+		<div class="contentBase" *ngFor='let obSemester of obCarrer.SEMESTERS'>	
+				
+			<div class="col-md-3 q-semester treeItem">							
+				<div class="q-semester-tittle">
 					<div class="q-semester-name">
 						{{obSemester.SEMESTER_NAME}}
 					</div>
@@ -61,7 +62,7 @@
 				</div>
 
 				<!-- Materias -->
-				<div class="collapse" class="courses">
+				<div class="courses">
 					<div *ngIf="obSemester.SUBJECTS.length === 0">No hay datos.</div>
 					<div *ngFor="let obCourse of obSemester.SUBJECTS" class="q-subject">
 						<div [ngClass]="getCourseTypeColor(obCourse.ID_GROUPER)" class="courseTypeSize"></div>
@@ -73,6 +74,7 @@
 					</div>
 				</div>
 			</div>
+		
 		</div>
 	</div>
 </div>
