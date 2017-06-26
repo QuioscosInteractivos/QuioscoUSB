@@ -15,6 +15,11 @@
 	</div>
 </div>
 
+<!-- Breadcrumb y subtitulo -->
+<div class="breadCrumbs col-sm-12">
+	<div class="q-breadCrumbs-element" *ngFor='let obCrumb of arBreadCrumb, let nuIndex=index' (click)="GoTo(nuIndex, obCrumb)">{{obCrumb.DESCRIPTION}}</div>
+</div>
+
 <!-- Mapa -->
 <div class='q-horizontal-flex'>
     <div class="q-vertical">

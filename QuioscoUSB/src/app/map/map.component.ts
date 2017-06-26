@@ -14,6 +14,7 @@ export class MapComponent implements OnInit {
   // Título de la vista
   sbTitle: any = 'Mapa de la universidad';
   arMapItems: any = [];
+  arAllMapItems: Array<object> = [];
   obSelected: any = null;
   sbMaskMessage: String = '';
   sbErrorMessage: String = '';
@@ -36,9 +37,11 @@ export class MapComponent implements OnInit {
         this.sbMap = iarData.MAP;
         this.sbBaseLayer = iarData.BASE_LAYER;
         this.sbLocation = iarData.LOCATION;
+        
+        this.Utilities.ReplaceArrayItems(this.arAllMapItems, iarData.LAYERS);
+        this.arAllMapItems.sort(this.DataSorter.bind(this));
 
         this.Utilities.ReplaceArrayItems(this.arMapItems, iarData.LAYERS);
-        this.arMapItems.sort(this.DataSorter.bind(this));
 
 					// Removiendo mascara
 					this.sbMaskMessage = '';
@@ -72,12 +75,19 @@ export class MapComponent implements OnInit {
 			return 0;
 		}
 
-    ShowSons(iobSelection){
-      if(iobSelection.ID === 'CANCEL_SEARCH'){
+    ShowSons(iobCrumb){
+      if(iobCrumb.ID === 'CANCEL_SEARCH'){
         // Quita el breadcrumb
         this.Utilities.ReplaceArrayItems(this.arBreadCrumb, null);
         // Limpiando el buscador
         this.sbSearchString = '';
+        // Devolviendo los items a los iniciales
+        this.Utilities.ReplaceArrayItems(this.arMapItems, this.arAllMapItems);
+
+      } else if(iobCrumb.SONS){
+        // Guardando el registro anterior en la miga de pan.
+			  this.arBreadCrumb.push(iobCrumb);
+        this.Utilities.ReplaceArrayItems(this.arMapItems, iobCrumb.SONS);
       }
     }
 
@@ -100,13 +110,13 @@ export class MapComponent implements OnInit {
         // Dejando solo un crumb para cancelar la búsqueda
         this.Utilities.ReplaceArrayItems(this.arBreadCrumb, [{
           ID: 'CANCEL_SEARCH',
-          NAME: '   X   '
+          DESCRIPTION: '   X   '
         }]);
 
         // Definiendo el nuevo inicio
         this.ShowSons({
           ID: 'SEARCH_RESULT',
-          NAME: 'Resultados para "' + this.sbSearchString + '"',
+          DESCRIPTION: 'Resultados para "' + this.sbSearchString + '"',
           SONS: iobData
         });
 
