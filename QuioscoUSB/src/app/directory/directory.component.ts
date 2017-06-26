@@ -89,6 +89,8 @@ export class DirectoryComponent implements OnInit {
 			if(iobUnit.DEPENDENCIES){
 				// Cuando se llega a las dependencias de una unidad
 				me.Utilities.ReplaceArrayItems(me.arDependencies, iobUnit.DEPENDENCIES);
+				// Reinicia las propiedades usadas para ordenar
+				me.OrderBy('DESCRIPTION', false);
 				// Se limpian las opciones del menú
 				me.Utilities.ReplaceArrayItems(me.arUnits, null);
 
@@ -112,6 +114,8 @@ export class DirectoryComponent implements OnInit {
             iarData => {
               // Agrega las dependencias de la unidad seleccionada
               me.Utilities.ReplaceArrayItems(me.arDependencies, iarData);
+							// Reinicia las propiedades usadas para ordenar
+							me.OrderBy('DESCRIPTION', false);
               // Se limpian las opciones del menú
               me.Utilities.ReplaceArrayItems(me.arUnits, null);
                 
@@ -216,7 +220,7 @@ export class DirectoryComponent implements OnInit {
           this.ShowSons({
             ID: 'SEARCH_RESULT',
             DESCRIPTION: 'Resultados para "' + this.sbSearchString + '"',
-            SONS: iobData
+            DEPENDENCIES: iobData
           });
 
 					// Removiendo mascara

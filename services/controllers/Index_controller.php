@@ -133,45 +133,19 @@ class Index_controller extends BServiceController {
     }
 
    public function getDependencies($inuId){
-       // $auditorio = Directorio::where("UNIT_ID", $inuId);
-      // $auditorio = $inuId;
+       $auditorio = Directorio::where("UNIT_ID", $inuId);
+
         if (!empty($auditorio) || is_array($auditorio)) {
             print json_encode($auditorio);
 
         } else {
-           // print json_encode($auditorio->toArray());
-           print '[
-    {
-        "ID":7,
-        "UNIT_ID":7,
-        "DESCRIPTION":"Departamento de Talento Humano",
-        "EMAIL":"talentohumano@usbcali.edu.co",
-        "PHONE":"488 22 22 ext 256"
-    },{
-        "ID":8,
-        "UNIT_ID":7,
-        "DESCRIPTION":"Departamento de Contabilidad",
-        "EMAIL":"",
-        "PHONE":"488 22 22 ext 260, 259, 261"
-    },{
-        "ID":9,
-        "UNIT_ID":7,
-        "DESCRIPTION":"Editorial Bonaventuriana",
-        "EMAIL":"editorialbonaventuriana@usbcali.edu.co",
-        "PHONE":"4882222 ext 274"
-    },{
-        "ID":10,
-        "UNIT_ID":7,
-        "DESCRIPTION":"Parque Tecnológico",
-        "EMAIL":"parquetecnologico@usbcali.edu.co",
-        "PHONE":"4882222 ext 290, 385"
-    }
-]';
+           print json_encode($auditorio->toArray());
         }
     }
 
     public function getDependenciesSearch($isbSearchString){
         $buildings = Directorio::searchFor("DESCRIPTION", $isbSearchString);
+
         if (!empty($buildings) || is_array($buildings)) {
             print json_encode($buildings);
             
@@ -180,7 +154,7 @@ class Index_controller extends BServiceController {
         }
     }
 
-    // --- PLANES DE ESTUDIOs ---
+    // --- PLANES DE ESTUDIOS ---
 
      public function getFaculties($id=false){
         /*if($id){

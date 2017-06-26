@@ -33,7 +33,7 @@
         <div *ngIf='obSelected' class='q-map-selected'><img src="assets/img/Map/Layers/{{obSelected.IMG}}"></div>
     </div>
 
-    <div class="q-vertical">
+    <div class="q-right-side">
         <div class='q-map-item' [ngClass]="{'q-mapSelection': (obSelected && obItem.NUMBER === obSelected.NUMBER)}" *ngFor='let obItem of arMapItems, let nuIndex=index' (click)="Select(obItem)">
             <div class='q-map-number'>{{obItem.NUMBER}}</div><div class='q-map-description'>{{obItem.DESCRIPTION}}</div>
         </div>
@@ -41,19 +41,16 @@
             No se encontró información del mapa.
         </div>
     </div>
-</div>
-
-<div *ngIf="obSelected">
-    <div class='q-map-item q-mapSelection'>
-        <div class='q-map-number'>{{obSelected.NUMBER}}</div><div class='q-map-description'>{{obSelected.DESCRIPTION}}</div>
-    </div>
-    <!-- Lugares del punto del mapa seleccionado -->
-    <div>
-        <div *ngFor='let obPlace of obSelected.PLACES'>
-            {{obPlace.DESCRIPTION}}
-        </div>
-        <div *ngIf="obSelected.PLACES.length === 0">
-            No hay oficinas.
+    <!-- Info seleccionada -->
+    <div class="q-right-side">
+        <!-- Lugares del punto del mapa seleccionado -->
+        <div *ngIf="obSelected">
+            <div *ngFor='let obPlace of obSelected.PLACES'>
+                {{obPlace.DESCRIPTION}}
+            </div>
+            <div *ngIf="obSelected.PLACES.length === 0">
+                No hay oficinas.
+            </div>
         </div>
     </div>
 </div>

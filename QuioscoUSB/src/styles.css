@@ -511,12 +511,16 @@ app-news iframe{
 }
 
 .q-vertical {
-    width: 40%;
+    height: 100%;
+    margin-left: 1rem;
+    flex: 3;
+}
+
+.q-right-side {
     height: 100%;
     margin-left: 1rem;
     flex: 1;
 }
-
 .q-horizontal-flex {
     display: flex;
     flex-direction: row;

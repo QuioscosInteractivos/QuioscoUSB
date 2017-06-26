@@ -34,6 +34,8 @@ export class MapComponent implements OnInit {
     // Se llama al método del servicio, recibe como entrada lo mismo con lo que resolvió la promesa
     this.MapService.getMapData().then(
       iarData => {
+        this.deSelect();
+
         this.sbMap = iarData.MAP;
         this.sbBaseLayer = iarData.BASE_LAYER;
         this.sbLocation = iarData.LOCATION;
@@ -59,6 +61,10 @@ export class MapComponent implements OnInit {
     this.obSelected = iobItem;
   }
 
+  deSelect(){
+    this.obSelected = null;
+  }
+
   CloseErrorMsg() {
 			this.sbErrorMessage = '';
 	}
@@ -77,6 +83,7 @@ export class MapComponent implements OnInit {
 
     ShowSons(iobCrumb){
       if(iobCrumb.ID === 'CANCEL_SEARCH'){
+        this.deSelect();
         // Quita el breadcrumb
         this.Utilities.ReplaceArrayItems(this.arBreadCrumb, null);
         // Limpiando el buscador
@@ -103,25 +110,26 @@ export class MapComponent implements OnInit {
       }
 
       // Añadiendo mascara
-      this.sbMaskMessage = 'Consultando carreras';
+      this.sbMaskMessage = 'Consultando mapa';
 
       this.MapService.getMapSearch(sbSearch).then(
         iobData => {
-        // Dejando solo un crumb para cancelar la búsqueda
-        this.Utilities.ReplaceArrayItems(this.arBreadCrumb, [{
-          ID: 'CANCEL_SEARCH',
-          DESCRIPTION: '   X   '
-        }]);
+          this.deSelect();
+          // Dejando solo un crumb para cancelar la búsqueda
+          this.Utilities.ReplaceArrayItems(this.arBreadCrumb, [{
+            ID: 'CANCEL_SEARCH',
+            DESCRIPTION: '   X   '
+          }]);
 
-        // Definiendo el nuevo inicio
-        this.ShowSons({
-          ID: 'SEARCH_RESULT',
-          DESCRIPTION: 'Resultados para "' + this.sbSearchString + '"',
-          SONS: iobData
-        });
+          // Definiendo el nuevo inicio
+          this.ShowSons({
+            ID: 'SEARCH_RESULT',
+            DESCRIPTION: 'Resultados para "' + this.sbSearchString + '"',
+            SONS: iobData.sort(this.DataSorter.bind(this))
+          });
 
-        // Removiendo mascara
-        this.sbMaskMessage = '';
+          // Removiendo mascara
+          this.sbMaskMessage = '';
 
       }).catch(iobError => {
         // Removiendo mascara
