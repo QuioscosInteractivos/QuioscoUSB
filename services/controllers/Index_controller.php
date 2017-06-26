@@ -1596,21 +1596,52 @@ class Index_controller extends BServiceController {
 }]';
     }
 	
-	public function getMapData($id=false){
-        if($id){
-            $auditorio = Map::getById($id);
-            print json_encode($auditorio->toArray());
-        }else{
-            $Map = Map::getAll();
+	public function getMapData(){
+		$Map = Map::getAll();
 
-			$return = new stdClass();
-			$return->MAP = "map.svg";
-			$return->BASE_LAYER = "allGray.svg";
-			$return->LOCATION = "mark.svg";
-			$return->LAYERS = $Map;
+		foreach ($Map as &$valor) {
+			$rfg = Mapextrainfo::search("mapextrainfo","DESCRIPTION","PARENT_ID=" . $valor[ID]);
+			// $valor es un arreglo
+			$valor[PLACES] = $rfg;
+		}
 
-            //print json_encode($Map);
-			print json_encode($return);
-        }
+		//$return es un objeto
+		$return = new stdClass();
+		$return->MAP = "map.svg";
+		$return->BASE_LAYER = "allGray.svg";
+		$return->LOCATION = "mark.svg";
+		$return->LAYERS = $Map;
+
+		print json_encode($return);
+    }
+
+	public function getMapPlaces($arMapPoints){
+		foreach ($arMapPoints as &$valor) {
+			$rfg = Mapextrainfo::search("mapextrainfo","DESCRIPTION","PARENT_ID=" . $valor[ID]);
+			// $valor es un arreglo
+			$valor[PLACES] = $rfg;
+		}
+
+		return $arMapPoints;
+	}
+
+	public function getMapSearch($isbSearchString){
+		$places = Mapextrainfo::searchFor("DESCRIPTION", $isbSearchString);
+
+		//$sql = 'SELECT * FROM map WHERE DESCRIPTION LIKE "%' . $isbSearchString . '%"';
+		$sql = 'DESCRIPTION LIKE "%' . $isbSearchString . '%"';
+		$counter = true;
+
+		foreach ($places as &$valor) {
+			// $valor es un arreglo
+			$sql = $sql . ' OR ID=' . $valor[PARENT_ID];
+		}
+
+		//print json_encode($sql);
+
+		$rfg = Map::search("map","*",$sql);
+
+		$result = self::getMapPlaces($rfg);
+		print json_encode($result);
     }
 }

@@ -1,6 +1,21 @@
 <!-- Barra de título -->
 <app-titlebar [sbTitle]='sbTitle'></app-titlebar>
 
+<!-- Buscador y botón -->
+<div class="searcherContainer col-sm-12">
+	<div class="searcherBar">
+		<input class="caja" type="text" placeholder="{{sbSearchPaceholder}}" [(ngModel)]="sbSearchString">
+		<button type="button" class="smallBtn btn btn-default btn-sm" aria-label="Left Align" (click)="Search()">
+		<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+		</button>
+	</div>
+	<div *ngIf='sbSearchRestriction || sbSearchHint' class="q-search-hint">
+		<p class='q-restriction'>{{sbSearchRestriction}}</p>
+		<p>{{sbSearchHint}}</p>
+	</div>
+</div>
+
+<!-- Mapa -->
 <div class='q-horizontal-flex'>
     <div class="q-vertical">
         <!-- Imagen base -->
@@ -16,6 +31,18 @@
     <div class="q-vertical">
         <div class='q-map-item' [ngClass]="{'q-mapSelection': (obSelected && obItem.NUMBER === obSelected.NUMBER)}" *ngFor='let obItem of arMapItems, let nuIndex=index' (click)="Select(obItem)">
             <div class='q-map-number'>{{obItem.NUMBER}}</div><div class='q-map-description'>{{obItem.DESCRIPTION}}</div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="obSelected">
+    <div class='q-map-item q-mapSelection'>
+        <div class='q-map-number'>{{obSelected.NUMBER}}</div><div class='q-map-description'>{{obSelected.DESCRIPTION}}</div>
+    </div>
+    <!-- Lugares del punto del mapa seleccionado -->
+    <div>
+        <div *ngFor='let obPlace of obSelected.PLACES'>
+            {{obPlace.DESCRIPTION}}
         </div>
     </div>
 </div>

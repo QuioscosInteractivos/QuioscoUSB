@@ -27,19 +27,21 @@ export class TitlebarComponent implements OnInit {
   }
 
   CalcTime(){
-     var today = new Date();
-    var nuHour = today.getHours();
-    var nuMinutes = today.getMinutes();
-    var nuSeconds = today.getSeconds();
-    var sbTime = "a.m";
-    nuMinutes = this.checkTime(nuMinutes);
+    let me = this,
+    today = new Date(),
+    nuHour = today.getHours(),
+    nuMinutes = today.getMinutes(),
+    nuSeconds = today.getSeconds(),
+    sbTime = "a.m";
+
+    nuMinutes = me.checkTime(nuMinutes);
 
     if(nuHour>12){
       nuHour = nuHour-12;
       sbTime= "p.m";
     }
-    this.dtHour= nuHour + ":" + nuMinutes +" "+sbTime+"    "+ this.FormatDate(today);
-    var t = setTimeout(this.CalcTime, 500);
+    me.dtHour= nuHour + ":" + nuMinutes +" "+sbTime+"    "+ me.FormatDate(today);
+    let t = setTimeout(me.CalcTime, 500);
   }
 
  

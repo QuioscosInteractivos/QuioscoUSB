@@ -11,4 +11,10 @@ export class MapService {
 
     return this.ServicesUtilities.SendRequest(sbUrl);
   }
+
+  getMapSearch(isbSearhString){
+    let sbUrl = "Index/mapSearch?isbSearhString="+isbSearhString;
+
+    return this.ServicesUtilities.SendRequest(sbUrl);
+  }
 }

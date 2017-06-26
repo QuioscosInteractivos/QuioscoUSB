@@ -20,6 +20,10 @@ export class MapComponent implements OnInit {
   sbMap: String;
   sbBaseLayer: String;
   sbLocation: String;
+  sbSearchPaceholder: String = 'Buscar lugar';
+  sbSearchString: String = '';
+  sbSearchRestriction: String = '';
+  arBreadCrumb: Array<Object> = [];
 
   ngOnInit() {
 
@@ -68,4 +72,51 @@ export class MapComponent implements OnInit {
 			return 0;
 		}
 
+    ShowSons(iobSelection){
+      if(iobSelection.ID === 'CANCEL_SEARCH'){
+        // Quita el breadcrumb
+        this.Utilities.ReplaceArrayItems(this.arBreadCrumb, null);
+        // Limpiando el buscador
+        this.sbSearchString = '';
+      }
+    }
+
+    Search(){
+      let sbSearch = this.sbSearchString.trim();
+
+      if(sbSearch.length < 4 ){
+        this.sbSearchRestriction = '* Por favor ingrese mas de 4 caracteres.';
+        return;
+
+      } else {
+        this.sbSearchRestriction = '';
+      }
+
+      // Añadiendo mascara
+      this.sbMaskMessage = 'Consultando carreras';
+
+      this.MapService.getMapSearch(sbSearch).then(
+        iobData => {
+        // Dejando solo un crumb para cancelar la búsqueda
+        this.Utilities.ReplaceArrayItems(this.arBreadCrumb, [{
+          ID: 'CANCEL_SEARCH',
+          NAME: '   X   '
+        }]);
+
+        // Definiendo el nuevo inicio
+        this.ShowSons({
+          ID: 'SEARCH_RESULT',
+          NAME: 'Resultados para "' + this.sbSearchString + '"',
+          SONS: iobData
+        });
+
+        // Removiendo mascara
+        this.sbMaskMessage = '';
+
+      }).catch(iobError => {
+        // Removiendo mascara
+        this.sbMaskMessage = '';
+        this.sbErrorMessage = iobError;
+      });
+    }
 }
