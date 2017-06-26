@@ -42,14 +42,14 @@
 <div class="q-rooms-container">
 	<div class="contentBase" *ngFor='let obClassRoom of arBuildingSchedule'>
 		<div class="col-sm-3 q-official-course q-semester treeItem">
-			<div data-toggle="collapse" data-target=".courses" class="q-room-cont-name">
+			<div class="q-room-cont-name">
 				<div class="q-room-name">
 					{{obClassRoom.DESCRIPTION}}
 				</div>
 			</div>
 
 			<!-- Materias -->
-			<div class="collapse" class="courses">
+			<div class="courses">
 				<div class='q-ScheduleItem' *ngFor="let obClass of obClassRoom.SCHEDULES">
 					<div class="q-first-level-course">{{obClass.DESCRIPTION}}</div>
 					<div class="q-second-level-course">{{obClass.STARTS_AT}} - {{obClass.ENDS_AT}}</div>
