@@ -129,4 +129,19 @@ export class MapComponent implements OnInit {
         this.sbErrorMessage = iobError;
       });
     }
+
+    // inuIndex es el número de la iteración por la que va un elemento,
+		//		no el indice real en el arreglo en el que esta (en otras palabras
+		//		no va a conconrdar con la posición real si el arreglo ha sido filtrado).
+		GoTo(inuIndex, iobCrumb){
+			let me = this,
+				  obCrumb = null;
+
+			// Borrando los crumbs que estan después del seleccionado
+			this.arBreadCrumb.splice(inuIndex+1);
+			obCrumb = this.arBreadCrumb.pop();
+
+			// Pide continuar con la lógica usual al seleccionar algo del menú
+			this.ShowSons(obCrumb);
+		}
 }
