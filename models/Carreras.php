@@ -28,23 +28,23 @@ class Carreras extends BModel {
         $this->ID_FACULTY = $ID_FACULTY;
     }
 
-    public function getID(): int {
+    public function getID(){
         return $this->ID;
     }
 
-    public function getNAME(): string {
+    public function getNAME(){
         return $this->NAME;
     }
 
-    public function getTYPE(): int {
+    public function getTYPE(){
         return $this->TYPE;
     }
 
-    public function getOBJECT(): string {
+    public function getOBJECT(){
         return $this->OBJECT;
     }
 
-    public function getID_FACULTY(): int {
+    public function getID_FACULTY(){
         return $this->ID_FACULTY;
     }
 

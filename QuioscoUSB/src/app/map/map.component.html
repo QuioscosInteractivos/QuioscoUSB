@@ -35,7 +35,7 @@
 
     <div class="q-right-side">
         <div class='q-map-item' [ngClass]="{'q-mapSelection': (obSelected && obItem.NUMBER === obSelected.NUMBER)}" *ngFor='let obItem of arMapItems, let nuIndex=index' (click)="Select(obItem)">
-            <div class='q-map-number'>{{obItem.NUMBER}}</div><div class='q-map-description'>{{obItem.DESCRIPTION}}</div>
+           <div class="q-map-centered"> <div class='q-map-number'>{{obItem.NUMBER}}</div><div class='q-map-description'>{{obItem.DESCRIPTION}}</div></div>
         </div>
         <div *ngIf="arMapItems.length === 0">
             No se encontró información del mapa.

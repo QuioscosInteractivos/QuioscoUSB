@@ -24,15 +24,15 @@ class Facultades extends BModel {
         $this->OBJECT = $OBJECT;
     }
 
-    public function getID(): int {
+    public function getID(){
         return $this->ID;
     }
 
-    public function getNAME(): string {
+    public function getNAME(){
         return $this->NAME;
     }
 
-    public function getOBJECT(): string {
+    public function getOBJECT(){
         return $this->OBJECT;
     }
 
