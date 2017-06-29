@@ -22,11 +22,11 @@ class Unidades extends BModel {
         $this->DESCRIPTION = $DESCRIPTION;
     }
 
-    public function getID(): int {
+    public function getID(){
         return $this->ID;
     }
 
-    public function getDESCRIPTION(): string {
+    public function getDESCRIPTION(){
         return $this->DESCRIPTION;
     }
 

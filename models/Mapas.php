@@ -24,15 +24,15 @@ class Mapas extends BModel {
         $this->ID = $ID;
     }
 
-    public function getTYPE(): int {
+    public function getTYPE(){
         return $this->TYPE;
     }
 
-    public function getIMAGE(): string {
+    public function getIMAGE(){
         return $this->IMAGE;
     }
 
-    public function getID(): int {
+    public function getID(){
         return $this->ID;
     }
 

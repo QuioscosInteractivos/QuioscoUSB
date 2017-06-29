@@ -22,11 +22,11 @@ class Quioscos extends BModel {
         $this->Nombre = $Nombre;
     }
 
-    public function getID(): int {
+    public function getID(){
         return $this->ID;
     }
 
-    public function getNombre(): string {
+    public function getNombre(){
         return $this->Nombre;
     }
 

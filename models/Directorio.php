@@ -28,23 +28,23 @@ class Directorio extends BModel {
         $this->PHONE = $PHONE;
     }
 
-    public function getID(): int {
+    public function getID() {
         return $this->ID;
     }
 
-    public function getUNIT_ID(): int {
+    public function getUNIT_ID(){
         return $this->UNIT_ID;
     }
 
-    public function getDESCRIPTION(): string {
+    public function getDESCRIPTION() {
         return $this->DESCRIPTION;
     }
 
-    public function getEMAIL(): string {
+    public function getEMAIL() {
         return $this->EMAIL;
     }
 
-    public function getPHONE(): string {
+    public function getPHONE(){
         return $this->PHONE;
     }
 

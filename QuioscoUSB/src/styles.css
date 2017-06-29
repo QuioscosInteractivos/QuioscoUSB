@@ -16,6 +16,28 @@ app-view-content{
     background-attachment: fixed;
     overflow-y: auto;
 }
+
+/************************************************************************************/
+::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+   box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #EB7E15; 
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: #EB7E15; 
+}
+/************************************************************************************/
 /* Mascara */
 .q-Mask {
     width: 100%;
@@ -511,7 +533,7 @@ app-news iframe{
 }
 
 .q-vertical {
-    height: 100%;
+    height: 90%;
     margin-left: 1rem;
     flex: 3;
 }
@@ -520,11 +542,13 @@ app-news iframe{
     height: 100%;
     margin-left: 1rem;
     flex: 1;
+    overflow: auto;
+    font-family: 'Roboto', sans-serif;
 }
 .q-horizontal-flex {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 90%;
     flex: 1;
 }
 app-map{
@@ -538,29 +562,35 @@ app-map{
     max-width: 19vw;
     margin-bottom: 1rem;
     display: flex;
-    height: 3rem;
+    height: 5rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-family: 'Roboto', sans-serif;
 }
+.q-map-centered{
+   border: 1px solid #059D8E;
+   width: 100%;
+}
 
 .q-map-number {
-    border: 1px solid #059D8E;
+    border-right: 1px solid #059D8E;
     flex: 1;
-    height: 3rem;
-    padding-top: 0.5rem;
+    height: 5rem;
     color: #059D8E;
     font-weight: 900;
     text-align: center;
+    display: table-cell; 
+    vertical-align: middle;
 }
 
 .q-map-description {
-    border: 1px solid #059D8E;
+    width: 100%;
+    /*border: 1px solid #059D8E;*/
     border-left: 0;
     flex: 10;
-    height: 3rem;
-    padding-top: 0.5rem;
+    height: 5rem;
     padding-left: 0.5rem;
-
+    display: table-cell; 
+    vertical-align: middle;
 }
 .q-mapSelection {
     background-color: orange;
