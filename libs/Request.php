@@ -93,8 +93,8 @@ class Request {
        Request::setHeader($status,$format);
        $response = ["status"=>$status,
                     "msg"=>$msg];
-       //Penelope::printJSON($response);
-       print_r($response);
+       Penelope::printJSON($response);
+       //print_r($response);
    }
    
    public static function response($msg,$args,$error = 0){

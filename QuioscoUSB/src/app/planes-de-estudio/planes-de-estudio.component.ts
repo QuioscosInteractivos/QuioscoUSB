@@ -191,7 +191,7 @@ export class PlanesDeEstudioComponent implements OnInit {
 
 		this.PlanesDeEstudioService.getCarrersSearch(sbSearch).then(
 			iobData => {
-
+				console.log(iobData);
 			//if(iobData.length > 0) {
 				// Dejando solo un crumb para cancelar la búsqueda
 				this.Utilities.ReplaceArrayItems(this.arBreadCrumb, [{
