@@ -98,8 +98,8 @@ class ServiceController{
                 $msg = "Missing ".$key." parameter";
                 $args = [];
                 $response = Request::response($msg, $args, 1);
-                //Penelope::printJSON($response);
-                print_r($response);
+                Penelope::printJSON($response);
+                //print_r($response);
                 exit();
             }
         }
