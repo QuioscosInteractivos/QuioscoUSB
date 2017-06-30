@@ -119,8 +119,9 @@ app-sidebar li{
 .q-tabSelected {
     background-color: #eb7e15;
     color:#ffffff;
-    box-shadow: -7px 8px 48px 1px rgba(0,0,0,0.48);
+    box-shadow: -7px 1px 1px 1px rgba(0,0,0,0.48);
 }
+
 .q-icon{
     width: 30%;
     display: table-cell;
@@ -243,7 +244,7 @@ app-view-content{
     font-weight: bold;
     color:white;
     border-radius: 5px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 1px 0 rgba(0, 0, 0, 0.2), 0 6px 1px 0 rgba(0, 0, 0, 0.19);
     height: 5rem;
     display: table;
     font-family: 'Lato', sans-serif;
@@ -449,7 +450,7 @@ app-news iframe{
 }
 .q-subject:last-child{
     border-bottom: 1px solid #059D8E;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 1px 0 rgba(0, 0, 0, 0.2), 0 6px 1px 0 rgba(0, 0, 0, 0.19);
 }
 
 /****************************MIGA DE PAN****************************/
@@ -531,16 +532,38 @@ app-news iframe{
   left: 0;
   transform: translate3d(0, -300%,0);
 }
+.q-right-items-cont{
+    width: 20rem;
+    background-color: rgba(5, 157, 142, 0.04);
+    border: 1px solid #059D8E;
+    margin: 0 1rem;
+    height: 90%;
+}
+.q-offices{
+    border: 2px solid #DEDEDE;
+    width: 100%;
+    margin: 1rem 0;
+    padding-left: 0.9rem;
+}
 
 .q-vertical {
     height: 90%;
     margin-left: 1rem;
     flex: 3;
 }
+.q-title-side{
+    margin-bottom: 1rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    color: #313732;
+    font-size: 1.2em;
+}
 
 .q-right-side {
-    height: 100%;
-    margin-left: 1rem;
+    height: 90%;
+    margin: auto;
+    width: 95%;
     flex: 1;
     overflow: auto;
     font-family: 'Roboto', sans-serif;
@@ -563,7 +586,7 @@ app-map{
     margin-bottom: 1rem;
     display: flex;
     height: 5rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 1px 0 rgba(0, 0, 0, 0.2), 0 6px 1px 0 rgba(0, 0, 0, 0.19);
     font-family: 'Roboto', sans-serif;
 }
 .q-map-centered{
@@ -624,7 +647,7 @@ app-map{
 }
 .q-ScheduleItem:last-child {
     border-bottom: #059D8E 1px solid;
-     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+     box-shadow: 0 4px 1px 0 rgba(0, 0, 0, 0.2), 0 6px 1px 0 rgba(0, 0, 0, 0.19);
 }
 .q-room-name{
     height: 3rem;
