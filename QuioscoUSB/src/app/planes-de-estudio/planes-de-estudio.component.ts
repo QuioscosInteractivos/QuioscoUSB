@@ -174,8 +174,6 @@ export class PlanesDeEstudioComponent implements OnInit {
 		}
 
 	Search(){
-		console.log(this.sbSearchString);
-
 		let sbSearch = this.sbSearchString.trim();
 
 		if(sbSearch.length < 4 ){
