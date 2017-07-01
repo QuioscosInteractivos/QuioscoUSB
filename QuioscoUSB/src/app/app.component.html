@@ -1,4 +1,4 @@
 <!-- [propiedad] -> Usado para decir que recibe el componente, es un binding. (propiedad) -> Usado para decir que envía el componente. -->
 <app-news [content]="content" (mousedown)="gnt()" (changeContent)="getContent($event)" *ngIf="content=='News'"></app-news>
 <app-sidebar [content]="content" (mousedown)="gnt()" (changeContent)="getContent($event)" *ngIf="content!='News'"></app-sidebar>
-<app-view-content [content]="content" (mousedown)="gnt()"  *ngIf="content!='News'"></app-view-content>
+<app-view-content [content]="content" (mousedown)="gnt()" (changeContent)="getContent($event)" *ngIf="content!='News'"></app-view-content>

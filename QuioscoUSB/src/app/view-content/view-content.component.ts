@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-view-content',
@@ -10,9 +10,15 @@ export class ViewContentComponent implements OnInit {
   @Input()
   content: string;
 
+  @Output()
+  changeContent: EventEmitter<any> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  getContent(content){
+    this.changeContent.emit(content);
+  }
 }

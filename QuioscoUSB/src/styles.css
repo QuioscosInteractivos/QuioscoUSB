@@ -516,6 +516,24 @@ app-news iframe{
  border-left-color: #059D8E;
 }
 
+.q-cartelera {
+ color: #ffffff;
+ font-weight: bold;
+ display: block;
+ background: #059D8E;
+ text-decoration: none;
+ position: relative;
+ height: 40px;
+ line-height: 40px;
+ padding: 0 10px 0 5px;
+ text-align: center;
+ margin-right: 23px;
+ font-family: 'Roboto', sans-serif;
+ width: 25rem;
+ margin: auto;
+ border-radius: 5px;
+}
+
 /* *********************************************************** MAP ************************************************************ */
 .q-map-sized {
     position: relative;
