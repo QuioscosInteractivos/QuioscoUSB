@@ -36,7 +36,7 @@
     define('_DB_HOST' , 'localhost');
     define('_DB_USER' , 'root' );
     define('_DB_PASS' , '' );
-    define('_DB_NAME' , 'quiscos');
+    define('_DB_NAME' , 'quioscodb');
     //Security Configuration
     define('HASH_ALGO' , 'sha512');
     define('HASH_KEY' , 'my_key');

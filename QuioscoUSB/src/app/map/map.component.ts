@@ -25,6 +25,7 @@ export class MapComponent implements OnInit {
   sbSearchString: String = '';
   sbSearchRestriction: String = '';
   arBreadCrumb: Array<Object> = [];
+  sbSearchHint: String;
 
   ngOnInit() {
 

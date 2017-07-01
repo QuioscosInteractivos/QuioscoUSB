@@ -40,7 +40,11 @@ class Carreras extends BModel {
         return $this->TYPE;
     }
 
+<<<<<<< HEAD
     public function getSEMESTERS(){
+=======
+    public function getSEMESTERS() {
+>>>>>>> 99f84665fb78acbb206669d5a53087ee6e455661
         return $this->SEMESTERS;
     }
 
