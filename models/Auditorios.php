@@ -26,19 +26,19 @@ class Auditorios extends BModel {
         $this->SCHEDULES = $SCHEDULES;
     }
 
-    public function getID(): int {
+    public function getID(){
         return $this->ID;
     }
 
-    public function getDESCRIPTION(): string {
+    public function getDESCRIPTION(){
         return $this->DESCRIPTION;
     }
 
-    public function getID_AUDIENCE(): int {
+    public function getID_AUDIENCE(){
         return $this->ID_AUDIENCE;
     }
 
-    public function getSCHEDULES(): string {
+    public function getSCHEDULES(){
         return $this->SCHEDULES;
     }
 

@@ -40,7 +40,7 @@ class Carreras extends BModel {
         return $this->TYPE;
     }
 
-    public function getSEMESTERS(): string {
+    public function getSEMESTERS(){
         return $this->SEMESTERS;
     }
 
