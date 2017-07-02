@@ -13,13 +13,16 @@ class Index_controller extends BServiceController {
 
     public function getAuditoriums($inuId){
         $auditorio = Auditorios::where("ID_AUDIENCE", $inuId);
+
+		foreach ($auditorio as &$valor) {
+			$valor[SCHEDULES] = json_decode($valor[SCHEDULES]);
+		}
+
         //$auditorio = Auditorios::getID_AUDIENCE($inuId);
         if (!empty($auditorio) || is_array($auditorio)) {
-			print 'Is array.';
             print json_encode($auditorio);
 
         } else {
-			print 'Is NOT array.';
             print json_encode($auditorio->toArray());
         }
 
