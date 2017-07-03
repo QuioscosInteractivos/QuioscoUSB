@@ -26,7 +26,6 @@ class Auditorios extends BModel {
         $this->SCHEDULES = $SCHEDULES;
     }
 
-<<<<<<< HEAD
     public function getID(){
         return $this->ID;
     }
@@ -40,21 +39,6 @@ class Auditorios extends BModel {
     }
 
     public function getSCHEDULES(){
-=======
-    public function getID() {
-        return $this->ID;
-    }
-
-    public function getDESCRIPTION() {
-        return $this->DESCRIPTION;
-    }
-
-    public function getID_AUDIENCE() {
-        return $this->ID_AUDIENCE;
-    }
-
-    public function getSCHEDULES() {
->>>>>>> 99f84665fb78acbb206669d5a53087ee6e455661
         return $this->SCHEDULES;
     }
 
