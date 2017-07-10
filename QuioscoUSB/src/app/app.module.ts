@@ -19,6 +19,7 @@ import { ServicesUtilities } from "app/services/services-utilities";
 import { TitlebarComponent } from './titlebar/titlebar.component';
 import { MapService } from "app/services/map.service";
 import { HomeComponent } from './home/home.component';
+import { HomeService } from "app/services/home.service";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     HttpModule
   ],
-  providers: [FindCourseService,DirectoryService,PlanesDeEstudioService,Utilities,ServicesUtilities,MapService],
+  providers: [FindCourseService,DirectoryService,PlanesDeEstudioService,Utilities,ServicesUtilities,MapService,HomeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

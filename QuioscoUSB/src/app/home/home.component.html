@@ -1,11 +1,22 @@
 <div class="q-home">
-    <div class="q-main-title">Bienvenido al quiosco interactivo</div>
-    <div class="q-subtitle">de la Universidad de San Buenaventura Cali</div>
+    <div class="q-main-title">{{sbTitle}}</div>
+    <div class="q-subtitle">{{sbSubtitle}}</div>
 
-    <div class="q-welcome-text">Esta aplicación facilita el acceso a información de interés dentro de la Universidad de San Buenaventura Cali de una manera rápida y amigable con el usuario.
-        Puedes empezar tocando una sección en el menú del lado izquierdo.
-    </div>
+    <div class="q-welcome-text">{{sbWelcome}}</div>
     <div class="q-cartelera" (click)="ChangeView()">
         Ver cartelera virtual
     </div>
 </div>
+
+<!-- Máscara -->
+ <div class='q-Mask' *ngIf='sbMaskMessage'>{{sbMaskMessage}}</div>
+  <!-- Máscara de error -->
+ <div class='q-Mask' *ngIf='sbErrorMessage'>
+	<div class="q-error-container">
+		<div class="q-error-title">Error</div>
+		<div class="q-errorMsg">{{sbErrorMessage}}</div>
+		<button type="button" class="smallBtn btn btn-default btn-sm q-error-btn" aria-label="Left Align" (click)="CloseErrorMsg()">
+			<span class="">Cerrar</span>
+		</button>
+	</div>
+ </div>
